@@ -1,4 +1,5 @@
 import FormHeader from '@/components/builder/form/form-header'
+import Test from './test.mdx'
 
 export default function Builder() {
   return (
@@ -12,7 +13,7 @@ export default function Builder() {
         </div>
       </div>
       <div className="grow">
-        preview
+        <Test />
       </div>
     </>
   )
