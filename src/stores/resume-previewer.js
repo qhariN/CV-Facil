@@ -26,7 +26,14 @@ export const useResumePreviewerStore = defineStore('resumePreviewer', () => {
 
   console.log('PdfMake and PdfJs loaded')
 
+  const instance = ref(null)
   const documentContent = ref('')
+  const totalPages = ref(1)
+  const currentPage = ref(1)
+
+  watch([documentContent, currentPage], () => {
+    render()
+  })
 
   function render() {
     const hr = {
@@ -102,7 +109,7 @@ export const useResumePreviewerStore = defineStore('resumePreviewer', () => {
         {
           columns: [
             {
-              width: 140,
+              width: 120,
               text: 'Perfil profesional',
               style: 'sectionTitle',
             },
@@ -117,7 +124,7 @@ export const useResumePreviewerStore = defineStore('resumePreviewer', () => {
         {
           columns: [
             {
-              width: 140,
+              width: 120,
               text: 'Experiencia laboral',
               style: 'sectionTitle',
             },
@@ -148,6 +155,123 @@ export const useResumePreviewerStore = defineStore('resumePreviewer', () => {
             }
           ]
         },
+        hr,
+        {
+          columns: [
+            {
+              width: 120,
+              text: 'Educación',
+              style: 'sectionTitle',
+            },
+            {
+              width: '*',
+              columns: [[
+                {
+                  text: 'Bachelor of Science',
+                  style: 'subSectionTitle',
+                },
+                {
+                  text: 'at University of Nowhere',
+                  style: 'subSectionTitle',
+                },
+                {
+                  text: '2008 - 2012',
+                  style: 'italic',
+                },
+                {
+                  text: 'New York, NY',
+                  style: 'italic',
+                },
+              ]]
+            }
+          ]
+        },
+        hr,
+        {
+          columns: [
+            {
+              width: 120,
+              text: 'Habilidades técnicas',
+              style: 'sectionTitle',
+            },
+            {
+              width: '*',
+              columns: [[
+                {
+                  text: 'Lenguajes y tecnologías',
+                  style: 'subSectionTitle',
+                },
+                {
+                  text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed neque velit, lobortis ut magna',
+                  style: 'gray',
+                },
+                {
+                  text: 'Tecnologías front-end',
+                  style: ['subSectionTitle', 'mt10'],
+                },
+                {
+                  text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed neque velit, lobortis ut magna',
+                  style: 'gray',
+                },
+                {
+                  text: 'Tecnologías back-end',
+                  style: ['subSectionTitle', 'mt10'],
+                },
+                {
+                  text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed neque velit, lobortis ut magna',
+                  style: 'gray',
+                },
+                {
+                  text: 'Databases',
+                  style: ['subSectionTitle', 'mt10'],
+                },
+                {
+                  text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed neque velit, lobortis ut magna',
+                  style: 'gray',
+                },
+                {
+                  text: 'Tecnologías CI/CD',
+                  style: ['subSectionTitle', 'mt10'],
+                },
+                {
+                  text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed neque velit, lobortis ut magna',
+                  style: 'gray',
+                },
+                {
+                  text: 'Conceptos',
+                  style: ['subSectionTitle', 'mt10'],
+                },
+                {
+                  text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed neque velit, lobortis ut magna',
+                  style: 'gray',
+                },
+              ]]
+            }
+          ]
+        },
+        hr,
+        {
+          columns: [
+            {
+              width: 120,
+              text: 'Información adicional',
+              style: 'sectionTitle',
+            },
+            {
+              width: '*',
+              columns: [[
+                {
+                  text: 'Idiomas',
+                  style: 'subSectionTitle',
+                },
+                {
+                  text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed neque velit, lobortis ut magna',
+                  style: 'gray',
+                },
+              ]]
+            }
+          ]
+        },
       ],
       styles: {
         italic: {
@@ -161,40 +285,46 @@ export const useResumePreviewerStore = defineStore('resumePreviewer', () => {
         fullName: {
           font: 'Merriweather',
           lineHeight: 1,
-          fontSize: 24,
+          fontSize: 22,
           bold: true
         },
         jobTitle: {
           font: 'Merriweather',
           lineHeight: 1,
-          fontSize: 18,
+          fontSize: 16,
           color: 'gray'
         },
         sectionTitle: {
           font: 'Merriweather',
           lineHeight: 1,
-          fontSize: 16,
+          fontSize: 14,
           bold: true
         },
         subSectionTitle: {
           font: 'Merriweather',
           lineHeight: 1,
-          fontSize: 14,
+          fontSize: 12,
           bold: true
         },
         mt6: {
           marginTop: 6
+        },
+        mt10: {
+          marginTop: 10
         }
       },
       defaultStyle: {
         font: 'NotoSerif',
-        fontSize: 12,
+        fontSize: 11,
         lineHeight: 0.8
       }
     }
-    pdfMake.createPdf(documentDefinitions).getDataUrl(dataUrl => {
+    instance.value = pdfMake.createPdf(documentDefinitions)
+    instance.value.getDataUrl(dataUrl => {
       pdfjs.getDocument(dataUrl).promise.then(pdf => {
-        const pageNumber = 1
+        totalPages.value = pdf.numPages
+
+        const pageNumber = currentPage.value
         pdf.getPage(pageNumber).then(page => {
           console.log('Page loaded')
           
@@ -226,9 +356,21 @@ export const useResumePreviewerStore = defineStore('resumePreviewer', () => {
     })
   }
 
-  watch(documentContent, () => {
-    render()
-  })
+  function previousPage() {
+    if (currentPage.value > 1) {
+      currentPage.value--
+    }
+  }
 
-  return { documentContent, render }
+  function nextPage() {
+    if (currentPage.value < totalPages.value) {
+      currentPage.value++
+    }
+  }
+
+  function download() {
+    instance.value.open()
+  }
+
+  return { documentContent, totalPages, currentPage, render, previousPage, nextPage, download }
 })
