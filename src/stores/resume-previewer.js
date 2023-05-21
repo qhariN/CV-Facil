@@ -36,9 +36,9 @@ export const useResumePreviewerStore = defineStore('resumePreviewer', () => {
     render()
   })
 
-  function render() {
+  function render () {
     const documentDefinitions = {
-      pageMargins: [ 40, 60, 40, 60 ],
+      pageMargins: [40, 60, 40, 60],
       content: [
         {
           columns: [
@@ -47,11 +47,11 @@ export const useResumePreviewerStore = defineStore('resumePreviewer', () => {
               columns: [[
                 {
                   text: 'John Doe',
-                  style: 'fullName',
+                  style: 'fullName'
                 },
                 {
                   text: 'Service Designer',
-                  style: 'jobTitle',
+                  style: 'jobTitle'
                 }
               ]]
             },
@@ -59,29 +59,29 @@ export const useResumePreviewerStore = defineStore('resumePreviewer', () => {
               width: 'auto',
               columns: [[
                 {
-                  text: 'United States',
+                  text: 'United States'
                 },
                 {
-                  text: '(123) 456-7890',
+                  text: '(123) 456-7890'
                 },
                 {
-                  text: 'john@doe.com',
+                  text: 'john@doe.com'
                 },
                 ' ',
                 {
                   text: 'https://linkedin.com/in/john-doe',
-                  link: 'https://linkedin.com/in/john-doe',
+                  link: 'https://linkedin.com/in/john-doe'
                 },
                 {
                   text: 'https://github.com/john-doe',
-                  link: 'https://github.com/john-doe',
+                  link: 'https://github.com/john-doe'
                 },
                 {
                   text: 'https://john-doe.com',
-                  link: 'https://john-doe.com',
-                },
+                  link: 'https://john-doe.com'
+                }
               ]],
-              style: 'gray',
+              style: 'gray'
             }
           ]
         },
@@ -91,12 +91,12 @@ export const useResumePreviewerStore = defineStore('resumePreviewer', () => {
             {
               width: 120,
               text: 'Perfil profesional',
-              style: 'sectionTitle',
+              style: 'sectionTitle'
             },
             {
               width: '*',
               text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed neque velit, lobortis ut magna',
-              style: 'gray',
+              style: 'gray'
             }
           ]
         },
@@ -106,31 +106,31 @@ export const useResumePreviewerStore = defineStore('resumePreviewer', () => {
             {
               width: 120,
               text: 'Experiencia laboral',
-              style: 'sectionTitle',
+              style: 'sectionTitle'
             },
             {
               width: '*',
               columns: [[
                 {
                   text: 'Senior Service Designer',
-                  style: 'subSectionTitle',
+                  style: 'subSectionTitle'
                 },
                 {
                   text: 'at ACME Inc.',
-                  style: 'subSectionTitle',
+                  style: 'subSectionTitle'
                 },
                 {
                   text: 'Sep 2016 - Current',
-                  style: 'italic',
+                  style: 'italic'
                 },
                 {
                   text: 'New York, NY',
-                  style: 'italic',
+                  style: 'italic'
                 },
                 {
                   text: 'My current employment. Responsible for the bounciness of the balls, the quality of the anvils, and the dynamism of the explosions.',
-                  style: ['gray', 'mt6'],
-                },
+                  style: ['gray', 'mt6']
+                }
               ]]
             }
           ]
@@ -141,27 +141,27 @@ export const useResumePreviewerStore = defineStore('resumePreviewer', () => {
             {
               width: 120,
               text: 'Educación',
-              style: 'sectionTitle',
+              style: 'sectionTitle'
             },
             {
               width: '*',
               columns: [[
                 {
                   text: 'Bachelor of Science',
-                  style: 'subSectionTitle',
+                  style: 'subSectionTitle'
                 },
                 {
                   text: 'at University of Nowhere',
-                  style: 'subSectionTitle',
+                  style: 'subSectionTitle'
                 },
                 {
                   text: '2008 - 2012',
-                  style: 'italic',
+                  style: 'italic'
                 },
                 {
                   text: 'New York, NY',
-                  style: 'italic',
-                },
+                  style: 'italic'
+                }
               ]]
             }
           ]
@@ -172,59 +172,59 @@ export const useResumePreviewerStore = defineStore('resumePreviewer', () => {
             {
               width: 120,
               text: 'Habilidades técnicas',
-              style: 'sectionTitle',
+              style: 'sectionTitle'
             },
             {
               width: '*',
               columns: [[
                 {
                   text: 'Lenguajes y tecnologías',
-                  style: 'subSectionTitle',
+                  style: 'subSectionTitle'
                 },
                 {
                   text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed neque velit, lobortis ut magna',
-                  style: 'gray',
+                  style: 'gray'
                 },
                 {
                   text: 'Tecnologías front-end',
-                  style: ['subSectionTitle', 'mt10'],
+                  style: ['subSectionTitle', 'mt10']
                 },
                 {
                   text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed neque velit, lobortis ut magna',
-                  style: 'gray',
+                  style: 'gray'
                 },
                 {
                   text: 'Tecnologías back-end',
-                  style: ['subSectionTitle', 'mt10'],
+                  style: ['subSectionTitle', 'mt10']
                 },
                 {
                   text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed neque velit, lobortis ut magna',
-                  style: 'gray',
+                  style: 'gray'
                 },
                 {
                   text: 'Databases',
-                  style: ['subSectionTitle', 'mt10'],
+                  style: ['subSectionTitle', 'mt10']
                 },
                 {
                   text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed neque velit, lobortis ut magna',
-                  style: 'gray',
+                  style: 'gray'
                 },
                 {
                   text: 'Tecnologías CI/CD',
-                  style: ['subSectionTitle', 'mt10'],
+                  style: ['subSectionTitle', 'mt10']
                 },
                 {
                   text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed neque velit, lobortis ut magna',
-                  style: 'gray',
+                  style: 'gray'
                 },
                 {
                   text: 'Conceptos',
-                  style: ['subSectionTitle', 'mt10'],
+                  style: ['subSectionTitle', 'mt10']
                 },
                 {
                   text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed neque velit, lobortis ut magna',
-                  style: 'gray',
-                },
+                  style: 'gray'
+                }
               ]]
             }
           ]
@@ -235,26 +235,25 @@ export const useResumePreviewerStore = defineStore('resumePreviewer', () => {
             {
               width: 120,
               text: 'Información adicional',
-              style: 'sectionTitle',
+              style: 'sectionTitle'
             },
             {
               width: '*',
               columns: [[
                 {
                   text: 'Idiomas',
-                  style: 'subSectionTitle',
+                  style: 'subSectionTitle'
                 },
                 {
                   text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed neque velit, lobortis ut magna',
-                  style: 'gray',
-                },
+                  style: 'gray'
+                }
               ]]
             }
           ]
-        },
+        }
       ],
-      ... setupStyles()
-      
+      ...setupStyles()
     }
     instance.value = pdfMake.createPdf(documentDefinitions)
     instance.value.getDataUrl(dataUrl => {
@@ -264,24 +263,24 @@ export const useResumePreviewerStore = defineStore('resumePreviewer', () => {
         const pageNumber = currentPage.value
         pdf.getPage(pageNumber).then(page => {
           console.log('Page loaded')
-          
+
           let viewport = page.getViewport({ scale: 1 })
           const desiredWidth = 500
           const scale = desiredWidth / viewport.width
           viewport = page.getViewport({ scale })
-      
+
           // Prepare canvas using PDF page dimensions
           const canvas = document.getElementById('the-canvas')
-          const context = canvas.getContext('2d')
+          const canvasContext = canvas.getContext('2d')
           canvas.height = viewport.height
           canvas.width = viewport.width
-      
+
           // Render PDF page into canvas context
-          var renderContext = {
-            canvasContext: context,
-            viewport: viewport
+          const renderContext = {
+            canvasContext,
+            viewport
           }
-          var renderTask = page.render(renderContext)
+          const renderTask = page.render(renderContext)
           renderTask.promise.then(() => {
             console.log('Page rendered')
           })
@@ -293,20 +292,21 @@ export const useResumePreviewerStore = defineStore('resumePreviewer', () => {
     })
   }
 
-  function previousPage() {
+  function previousPage () {
     if (currentPage.value > 1) {
       currentPage.value--
     }
   }
 
-  function nextPage() {
+  function nextPage () {
     if (currentPage.value < totalPages.value) {
       currentPage.value++
     }
   }
 
-  function download() {
+  function download () {
     instance.value.open()
+    // instance.value.download('John Doe - CV')
   }
 
   return { documentContent, totalPages, currentPage, render, previousPage, nextPage, download }

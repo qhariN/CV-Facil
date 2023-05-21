@@ -55,23 +55,23 @@ const styles = () => ({
 })
 
 export const hr = () => ({
-  table : {
+  table: {
     widths: ['100%'],
-    body : [[''], ['']]
+    body: [[''], ['']]
   },
-  layout : {
-    hLineWidth(i, node) {
+  layout: {
+    hLineWidth (i, node) {
       if (i === 0 || i === node.table.body.length) {
         return 0
       }
       return 1
     },
-    vLineWidth() {
+    vLineWidth () {
       return 0
     },
-    hLineColor() {
+    hLineColor () {
       return '#eee'
-    },
+    }
   },
-  margin: [0, 24, 0, 24],
+  margin: [0, 24, 0, 24]
 })
