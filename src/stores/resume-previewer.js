@@ -1,5 +1,6 @@
 import { ref, watch } from 'vue'
 import { defineStore } from 'pinia'
+import { hr, setupStyles } from '../utils/pdf-build'
 import pdfMake from 'pdfmake/build/pdfmake'
 import pdfFonts from 'pdfmake/build/vfs_fonts'
 import * as pdfjs from 'pdfjs-dist/legacy/build/pdf'
@@ -36,27 +37,6 @@ export const useResumePreviewerStore = defineStore('resumePreviewer', () => {
   })
 
   function render() {
-    const hr = {
-      table : {
-        widths: ['100%'],
-        body : [[''], ['']]
-      },
-      layout : {
-        hLineWidth(i, node) {
-          if (i === 0 || i === node.table.body.length) {
-            return 0
-          }
-          return 1
-        },
-        vLineWidth() {
-          return 0
-        },
-        hLineColor() {
-          return '#eee'
-        },
-      },
-      margin: [0, 24, 0, 24],
-    }
     const documentDefinitions = {
       pageMargins: [ 40, 60, 40, 60 ],
       content: [
@@ -105,7 +85,7 @@ export const useResumePreviewerStore = defineStore('resumePreviewer', () => {
             }
           ]
         },
-        hr,
+        hr(),
         {
           columns: [
             {
@@ -120,7 +100,7 @@ export const useResumePreviewerStore = defineStore('resumePreviewer', () => {
             }
           ]
         },
-        hr,
+        hr(),
         {
           columns: [
             {
@@ -155,7 +135,7 @@ export const useResumePreviewerStore = defineStore('resumePreviewer', () => {
             }
           ]
         },
-        hr,
+        hr(),
         {
           columns: [
             {
@@ -186,7 +166,7 @@ export const useResumePreviewerStore = defineStore('resumePreviewer', () => {
             }
           ]
         },
-        hr,
+        hr(),
         {
           columns: [
             {
@@ -249,7 +229,7 @@ export const useResumePreviewerStore = defineStore('resumePreviewer', () => {
             }
           ]
         },
-        hr,
+        hr(),
         {
           columns: [
             {
@@ -273,51 +253,8 @@ export const useResumePreviewerStore = defineStore('resumePreviewer', () => {
           ]
         },
       ],
-      styles: {
-        italic: {
-          font: 'Merriweather',
-          lineHeight: 1,
-          italics: true
-        },
-        gray: {
-          color: 'gray'
-        },
-        fullName: {
-          font: 'Merriweather',
-          lineHeight: 1,
-          fontSize: 22,
-          bold: true
-        },
-        jobTitle: {
-          font: 'Merriweather',
-          lineHeight: 1,
-          fontSize: 16,
-          color: 'gray'
-        },
-        sectionTitle: {
-          font: 'Merriweather',
-          lineHeight: 1,
-          fontSize: 14,
-          bold: true
-        },
-        subSectionTitle: {
-          font: 'Merriweather',
-          lineHeight: 1,
-          fontSize: 12,
-          bold: true
-        },
-        mt6: {
-          marginTop: 6
-        },
-        mt10: {
-          marginTop: 10
-        }
-      },
-      defaultStyle: {
-        font: 'NotoSerif',
-        fontSize: 11,
-        lineHeight: 0.8
-      }
+      ... setupStyles()
+      
     }
     instance.value = pdfMake.createPdf(documentDefinitions)
     instance.value.getDataUrl(dataUrl => {
