@@ -15,7 +15,7 @@ onMounted(() => {
       header
     </div>
     <div class="grow flex items-center justify-center">
-      <canvas id="the-canvas" class="border"></canvas>
+      <canvas id="the-canvas" class="rounded-lg shadow"></canvas>
     </div>
     <div>footer</div>
   </div>
