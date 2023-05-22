@@ -7,7 +7,7 @@
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: url('fonts/Sharpie-Bold.woff2') format('woff2');
+  src: url('/fonts/Sharpie-Bold.woff2') format('woff2');
 }
 
 @font-face {
@@ -15,7 +15,7 @@
   font-style: normal;
   font-weight: 100;
   font-display: swap;
-  src: url('../fonts/Ranade-Thin.woff2') format('woff2');
+  src: url('/fonts/Ranade-Thin.woff2') format('woff2');
 }
 
 
@@ -24,7 +24,7 @@
   font-style: italic;
   font-weight: 100;
   font-display: swap;
-  src: url('../fonts/Ranade-ThinItalic.woff2') format('woff2');
+  src: url('/fonts/Ranade-ThinItalic.woff2') format('woff2');
 }
 
 
@@ -33,7 +33,7 @@
   font-style: normal;
   font-weight: 300;
   font-display: swap;
-  src: url('../fonts/Ranade-Light.woff2') format('woff2');
+  src: url('/fonts/Ranade-Light.woff2') format('woff2');
 }
 
 
@@ -42,7 +42,7 @@
   font-style: italic;
   font-weight: 300;
   font-display: swap;
-  src: url('../fonts/Ranade-LightItalic.woff2') format('woff2');
+  src: url('/fonts/Ranade-LightItalic.woff2') format('woff2');
 }
 
 
@@ -51,7 +51,7 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url('../fonts/Ranade-Regular.woff2') format('woff2');
+  src: url('/fonts/Ranade-Regular.woff2') format('woff2');
 }
 
 
@@ -60,7 +60,7 @@
   font-style: italic;
   font-weight: 400;
   font-display: swap;
-  src: url('../fonts/Ranade-Italic.woff2') format('woff2');
+  src: url('/fonts/Ranade-Italic.woff2') format('woff2');
 }
 
 
@@ -69,7 +69,7 @@
   font-style: normal;
   font-weight: 500;
   font-display: swap;
-  src: url('../fonts/Ranade-Medium.woff2') format('woff2');
+  src: url('/fonts/Ranade-Medium.woff2') format('woff2');
 }
 
 
@@ -78,7 +78,7 @@
   font-style: italic;
   font-weight: 500;
   font-display: swap;
-  src: url('../fonts/Ranade-MediumItalic.woff2') format('woff2');
+  src: url('/fonts/Ranade-MediumItalic.woff2') format('woff2');
 }
 
 
@@ -87,7 +87,7 @@
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: url('../fonts/Ranade-Bold.woff2') format('woff2');
+  src: url('/fonts/Ranade-Bold.woff2') format('woff2');
 }
 
 
@@ -96,7 +96,7 @@
   font-style: italic;
   font-weight: 700;
   font-display: swap;
-  src: url('../fonts/Ranade-BoldItalic.woff2') format('woff2');
+  src: url('/fonts/Ranade-BoldItalic.woff2') format('woff2');
 }
 
 @layer base {
