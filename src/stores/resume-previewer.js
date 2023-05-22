@@ -2,23 +2,11 @@ import { ref, watch } from 'vue'
 import { defineStore } from 'pinia'
 import { hr, setupStyles } from '../utils/pdf-build'
 import pdfMake from 'pdfmake/build/pdfmake'
-import pdfFonts from 'pdfmake/build/vfs_fonts'
+import pdfFonts from '../utils/pdf-fonts'
 import * as pdfjs from 'pdfjs-dist/legacy/build/pdf'
 
 export const useResumePreviewerStore = defineStore('resumePreviewer', () => {
-  pdfMake.vfs = pdfFonts.pdfMake.vfs
-  pdfMake.fonts = {
-    Merriweather: {
-      normal: 'https://fonts.cdnfonts.com/s/12231/Merriweather-Regular.woff',
-      bold: 'https://fonts.cdnfonts.com/s/12231/Merriweather-Bold.woff',
-      italics: 'https://fonts.cdnfonts.com/s/12231/Merriweather-Italic.woff',
-      bolditalics: 'https://fonts.cdnfonts.com/s/12231/Merriweather-BoldItalic.woff'
-    },
-    NotoSerif: {
-      normal: 'https://fonts.cdnfonts.com/s/15898/HindSiliguri-Regular.woff',
-      bold: 'https://fonts.cdnfonts.com/s/15898/HindSiliguri-Bold.woff'
-    }
-  }
+  pdfMake.fonts = pdfFonts
 
   if (!pdfjs.GlobalWorkerOptions.workerSrc) {
     const WORKER_URL = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`
