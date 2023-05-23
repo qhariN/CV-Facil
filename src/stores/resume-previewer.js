@@ -4,6 +4,7 @@ import { hr, setupStyles } from '../utils/pdf-build'
 import pdfMake from 'pdfmake/build/pdfmake'
 import pdfFonts from '../utils/pdf-fonts'
 import * as pdfjs from 'pdfjs-dist/legacy/build/pdf'
+import debounce from '../utils/debounce'
 
 export const useResumePreviewerStore = defineStore('resumePreviewer', () => {
   pdfMake.fonts = pdfFonts
@@ -20,11 +21,17 @@ export const useResumePreviewerStore = defineStore('resumePreviewer', () => {
   const totalPages = ref(1)
   const currentPage = ref(1)
 
-  watch([documentContent, currentPage], () => {
+  const fullName = ref('')
+  const jobTitle = ref('')
+  const address = ref('')
+  const phoneNumber = ref('')
+  const email = ref('')
+
+  watch([documentContent, currentPage, fullName, jobTitle, address, phoneNumber, email], () => {
     render()
   })
 
-  function render () {
+  const render = debounce(() => {
     const documentDefinitions = {
       pageMargins: [40, 60, 40, 60],
       content: [
@@ -34,11 +41,11 @@ export const useResumePreviewerStore = defineStore('resumePreviewer', () => {
               width: '*',
               columns: [[
                 {
-                  text: 'John Doe',
+                  text: fullName.value,
                   style: 'fullName'
                 },
                 {
-                  text: 'Service Designer',
+                  text: jobTitle.value,
                   style: 'jobTitle'
                 }
               ]]
@@ -46,15 +53,9 @@ export const useResumePreviewerStore = defineStore('resumePreviewer', () => {
             {
               width: 'auto',
               columns: [[
-                {
-                  text: 'United States'
-                },
-                {
-                  text: '(123) 456-7890'
-                },
-                {
-                  text: 'john@doe.com'
-                },
+                address.value,
+                phoneNumber.value,
+                email.value,
                 ' ',
                 {
                   text: 'https://linkedin.com/in/john-doe',
@@ -71,7 +72,8 @@ export const useResumePreviewerStore = defineStore('resumePreviewer', () => {
               ]],
               style: 'gray'
             }
-          ]
+          ],
+          columnGap: 40
         },
         hr(),
         {
@@ -278,7 +280,7 @@ export const useResumePreviewerStore = defineStore('resumePreviewer', () => {
         console.error(reason)
       })
     })
-  }
+  }, 1000)
 
   function previousPage () {
     if (currentPage.value > 1) {
@@ -297,5 +299,5 @@ export const useResumePreviewerStore = defineStore('resumePreviewer', () => {
     // instance.value.download('John Doe - CV')
   }
 
-  return { documentContent, totalPages, currentPage, render, previousPage, nextPage, download }
+  return { documentContent, totalPages, currentPage, render, previousPage, nextPage, download, fullName, jobTitle, address, phoneNumber, email }
 })

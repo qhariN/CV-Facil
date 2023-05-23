@@ -23,7 +23,7 @@ const styles = () => ({
     },
     fullName: {
       font: 'Merriweather',
-      lineHeight: 1,
+      lineHeight: 1.1,
       fontSize: 22,
       bold: true
     },
