@@ -1,5 +1,9 @@
 <script setup>
 import { RouterLink } from 'vue-router'
+
+function infojobsLogin () {
+  window.location.href = '/api/infojobs/login'
+}
 </script>
 
 <template>
@@ -12,13 +16,13 @@ import { RouterLink } from 'vue-router'
         Obtén un PDF listo para conquistar tu próxima oportunidad laboral
       </p>
       <div class="mt-9 flex justify-center items-center gap-3">
-        <RouterLink class="text-xl text-white bg-gradient-to-t from-zinc-800 to-black/80 hover:bg-black transition-colors px-8 py-4 rounded-xl" to="/about">
+        <RouterLink to="/wizard" class="text-xl text-white bg-gradient-to-t from-zinc-800 to-black/80 hover:bg-black transition-colors px-8 py-4 rounded-xl">
           Comenzar
         </RouterLink>
         <p class="text-xl">ó</p>
-        <RouterLink class="text-xl bg-gray-100/30 hover:bg-gray-100/50 border border-gray-100/30 hover:border-black transition-colors px-8 py-4 rounded-xl" to="/about">
+        <button @click="infojobsLogin" class="text-xl bg-gray-100/30 hover:bg-gray-100/50 border border-gray-100/30 hover:border-black transition-colors px-8 py-4 rounded-xl">
           Importar de InfoJobs
-        </RouterLink>
+        </button>
       </div>
     </div>
   </main>

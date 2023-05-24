@@ -11,9 +11,14 @@ const router = createRouter({
       component: HomeView
     },
     {
-      path: '/about',
-      name: 'about',
+      path: '/wizard',
+      name: 'wizard',
       component: WizardView
+    },
+    {
+      path: '/my-cvs',
+      name: 'my-cvs',
+      component: () => import('../views/MyCvsView.vue')
     }
   ]
 })
