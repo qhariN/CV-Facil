@@ -1,9 +1,8 @@
 <script setup>
 import { RouterLink } from 'vue-router'
+import { useInfojobsStore } from '../stores/infojobs'
 
-function infojobsLogin () {
-  window.location.href = '/api/infojobs/login'
-}
+const infojobsStore = useInfojobsStore()
 </script>
 
 <template>
@@ -18,7 +17,7 @@ function infojobsLogin () {
         Comenzar
       </RouterLink>
       <p class="text-xl">ó</p>
-      <button @click="infojobsLogin" class="text-xl bg-gray-100/30 hover:bg-gray-100/50 border border-gray-100/30 hover:border-black transition-colors px-8 py-4 rounded-xl">
+      <button @click="infojobsStore.login" class="text-xl bg-gray-100/30 hover:bg-gray-100/50 border border-gray-100/30 hover:border-black transition-colors px-8 py-4 rounded-xl">
         Importar de InfoJobs
       </button>
     </div>
