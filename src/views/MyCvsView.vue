@@ -1,47 +1,55 @@
 <script setup>
 import { onMounted, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import wretch from 'wretch'
+import { useInfojobsStore } from '../stores/infojobs'
+import { usePersonalInformationStore } from '../stores/personal-information'
+import { useProfessionalProfileStore } from '../stores/professional-profile'
+import { useWorkExperienceStore } from '../stores/work-experience'
+import { useEducationStore } from '../stores/education'
 
 const route = useRoute()
 const router = useRouter()
+const infojobsStore = useInfojobsStore()
+const personalInformationStore = usePersonalInformationStore()
+const professionalProfileStore = useProfessionalProfileStore()
+const workExperienceStore = useWorkExperienceStore()
+const educationStore = useEducationStore()
 
 const curriculums = ref([])
 
 onMounted(() => {
   watch(() => route.query.access_token, value => {
-    verifyAccessToken(value)
+    infojobsStore.verifyAccessToken(value, getCurriculums)
   }, { immediate: true })
 })
 
-function verifyAccessToken (accessToken) {
-  if (accessToken) {
-    localStorage.setItem('access_token', accessToken)
-    router.push('my-cvs')
-  } else {
-    const hasAccessToken = localStorage.getItem('access_token')
-    if (!hasAccessToken) infojobsLogin()
-    else getCurriculums()
-  }
-}
-
-function infojobsLogin () {
-  window.location.href = '/api/infojobs/login'
-}
-
 async function getCurriculums () {
-  const accessToken = localStorage.getItem('access_token')
-  const data = wretch('/api/infojobs/curriculum')
-    .headers({
-      Authorization: `Bearer ${accessToken}`
-    })
-    .get()
-  curriculums.value = await data.json()
+  const data = await infojobsStore.getCurriculums()
+  curriculums.value = data
+}
+
+async function selectCurriculum (curriculum) {
+  const curriculumId = curriculum.code
+  const data = await Promise.all([
+    infojobsStore.getPersonalData(curriculumId),
+    infojobsStore.getCvText(curriculumId),
+    infojobsStore.getExperience(curriculumId),
+    infojobsStore.getEducation(curriculumId)
+  ])
+  const [personalData, cvText, experience, education] = data
+  personalInformationStore.set(personalData)
+  professionalProfileStore.set(cvText)
+  workExperienceStore.set(experience)
+  educationStore.set(education)
+  router.push('wizard')
 }
 </script>
 
 <template>
-  <div class="z-10">
-    my cvs view
-  </div>
+  <ul class="z-10 divide-y">
+    <li v-for="(curriculum, index) in curriculums" :key="index" class="bg-gray-100/30 p-5" @click="selectCurriculum(curriculum)">
+      <h2>{{ curriculum.name }}</h2>
+      <span v-if="curriculum.principal">Principal</span>
+    </li>
+  </ul>
 </template>

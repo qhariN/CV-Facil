@@ -1,14 +1,9 @@
 <script setup>
-import { onMounted } from 'vue'
 import { useResumePreviewerStore } from '../stores/resume-previewer'
 import ChevronLeft from './icons/ChevronLeft.vue'
 import ChevronRight from './icons/ChevronRight.vue'
 
 const resumePreviewer = useResumePreviewerStore()
-
-onMounted(() => {
-  resumePreviewer.render()
-})
 </script>
 
 <template>

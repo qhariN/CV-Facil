@@ -5,6 +5,10 @@ import pdfMake from 'pdfmake/build/pdfmake'
 import pdfFonts from '../utils/pdf-fonts'
 import * as pdfjs from 'pdfjs-dist/legacy/build/pdf'
 import debounce from '../utils/debounce'
+import { usePersonalInformationStore } from './personal-information'
+import { useProfessionalProfileStore } from './professional-profile'
+import { useWorkExperienceStore } from './work-experience'
+import { useEducationStore } from './education'
 
 export const useResumePreviewerStore = defineStore('resumePreviewer', () => {
   pdfMake.fonts = pdfFonts
@@ -17,145 +21,25 @@ export const useResumePreviewerStore = defineStore('resumePreviewer', () => {
   console.log('PdfMake and PdfJs loaded')
 
   const instance = ref(null)
-  const documentContent = ref('')
   const totalPages = ref(1)
   const currentPage = ref(1)
 
-  const fullName = ref('')
-  const jobTitle = ref('')
-  const address = ref('')
-  const phoneNumber = ref('')
-  const email = ref('')
-
-  watch([documentContent, currentPage, fullName, jobTitle, address, phoneNumber, email], () => {
-    render()
-  })
+  const personalInformationStore = usePersonalInformationStore()
+  const professionalProfileStore = useProfessionalProfileStore()
+  const workExperienceStore = useWorkExperienceStore()
+  const educationStore = useEducationStore()
 
   const render = debounce(() => {
     const documentDefinitions = {
       pageMargins: [40, 60, 40, 60],
       content: [
-        {
-          columns: [
-            {
-              width: '*',
-              columns: [[
-                {
-                  text: fullName.value,
-                  style: 'fullName'
-                },
-                {
-                  text: jobTitle.value,
-                  style: 'jobTitle'
-                }
-              ]]
-            },
-            {
-              width: 'auto',
-              columns: [[
-                address.value,
-                phoneNumber.value,
-                email.value,
-                ' ',
-                {
-                  text: 'https://linkedin.com/in/john-doe',
-                  link: 'https://linkedin.com/in/john-doe'
-                },
-                {
-                  text: 'https://github.com/john-doe',
-                  link: 'https://github.com/john-doe'
-                },
-                {
-                  text: 'https://john-doe.com',
-                  link: 'https://john-doe.com'
-                }
-              ]],
-              style: 'gray'
-            }
-          ],
-          columnGap: 40
-        },
+        personalInformationStore.personalInformationSection,
         hr(),
-        {
-          columns: [
-            {
-              width: 120,
-              text: 'Perfil profesional',
-              style: 'sectionTitle'
-            },
-            {
-              width: '*',
-              text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed neque velit, lobortis ut magna',
-              style: 'gray'
-            }
-          ]
-        },
+        professionalProfileStore.professionalProfileSection,
         hr(),
-        {
-          columns: [
-            {
-              width: 120,
-              text: 'Experiencia laboral',
-              style: 'sectionTitle'
-            },
-            {
-              width: '*',
-              columns: [[
-                {
-                  text: 'Senior Service Designer',
-                  style: 'subSectionTitle'
-                },
-                {
-                  text: 'at ACME Inc.',
-                  style: 'subSectionTitle'
-                },
-                {
-                  text: 'Sep 2016 - Current',
-                  style: 'italic'
-                },
-                {
-                  text: 'New York, NY',
-                  style: 'italic'
-                },
-                {
-                  text: 'My current employment. Responsible for the bounciness of the balls, the quality of the anvils, and the dynamism of the explosions.',
-                  style: ['gray', 'mt6']
-                }
-              ]]
-            }
-          ]
-        },
+        workExperienceStore.workExperienceSection,
         hr(),
-        {
-          columns: [
-            {
-              width: 120,
-              text: 'Educación',
-              style: 'sectionTitle'
-            },
-            {
-              width: '*',
-              columns: [[
-                {
-                  text: 'Bachelor of Science',
-                  style: 'subSectionTitle'
-                },
-                {
-                  text: 'at University of Nowhere',
-                  style: 'subSectionTitle'
-                },
-                {
-                  text: '2008 - 2012',
-                  style: 'italic'
-                },
-                {
-                  text: 'New York, NY',
-                  style: 'italic'
-                }
-              ]]
-            }
-          ]
-        },
+        educationStore.educationSection,
         hr(),
         {
           columns: [
@@ -282,6 +166,10 @@ export const useResumePreviewerStore = defineStore('resumePreviewer', () => {
     })
   }, 1000)
 
+  watch([currentPage, personalInformationStore], () => {
+    render()
+  }, { immediate: true })
+
   function previousPage () {
     if (currentPage.value > 1) {
       currentPage.value--
@@ -299,5 +187,5 @@ export const useResumePreviewerStore = defineStore('resumePreviewer', () => {
     // instance.value.download('John Doe - CV')
   }
 
-  return { documentContent, totalPages, currentPage, render, previousPage, nextPage, download, fullName, jobTitle, address, phoneNumber, email }
+  return { totalPages, currentPage, previousPage, nextPage, download }
 })
