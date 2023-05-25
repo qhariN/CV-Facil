@@ -1,5 +1,5 @@
 import wretch from 'wretch'
-import { allowCors } from '../../src/middlewares/cors'
+import { allowCors } from '../../../../src/middlewares/cors'
 
 const clientId = process.env.CLIENT_ID ?? ''
 const clientSecret = process.env.CLIENT_SECRET ?? ''
@@ -10,14 +10,14 @@ async function handler (req, res) {
 
   const { curriculumId } = req.query
 
-  const data = wretch(`https://api.infojobs.net/api/1/curriculum/${curriculumId}/experience`)
+  const data = wretch(`https://api.infojobs.net/api/1/curriculum/${curriculumId}/personaldata`)
     .accept('application/json')
     .auth(`Basic ${base64Credentials}, ${bearer}`)
     .get()
 
-  const experience = await data.json()
+  const personalData = await data.json()
 
-  return res.json(experience)
+  return res.json(personalData)
 }
 
 export default allowCors(handler)

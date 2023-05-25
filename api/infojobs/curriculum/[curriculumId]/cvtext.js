@@ -1,5 +1,5 @@
 import wretch from 'wretch'
-import { allowCors } from '../../src/middlewares/cors'
+import { allowCors } from '../../../../src/middlewares/cors'
 
 const clientId = process.env.CLIENT_ID ?? ''
 const clientSecret = process.env.CLIENT_SECRET ?? ''
