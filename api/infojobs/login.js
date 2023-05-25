@@ -1,4 +1,4 @@
-import { allowCors } from '../../../src/middlewares/cors'
+import { allowCors } from '../../src/middlewares/cors'
 
 const scopeNames = process.env.SCOPE_NAMES ?? ''
 const clientId = process.env.CLIENT_ID ?? ''

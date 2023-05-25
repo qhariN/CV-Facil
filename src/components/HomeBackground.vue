@@ -4,7 +4,7 @@ import { RouterView } from 'vue-router'
 
 <template>
   <main class="min-h-screen bg-gray-100 flex justify-center items-center relative">
-    <img src="@/assets/light-accent-compressed.png" alt="bg" class="absolute opacity-50 max-h-screen">
+    <img src="@/assets/light-accent-compressed.png" alt="bg" class="absolute opacity-50 max-h-screen pointer-events-none">
     <RouterView />
   </main>
 </template>
