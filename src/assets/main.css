@@ -102,6 +102,11 @@
 @layer base {
   body {
     font-family: 'Ranade', sans-serif;
+    background-color: #f3f4f6;
+    opacity: 1;
+    background-image:  linear-gradient(#F1F1F1 2px, transparent 2px), linear-gradient(90deg, #F1F1F1 2px, transparent 2px), linear-gradient(#F1F1F1 1px, transparent 1px), linear-gradient(90deg, #F1F1F1 1px, #f3f4f6 1px);
+    background-size: 50px 50px, 50px 50px, 10px 10px, 10px 10px;
+    background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
   }
   h1 {
     font-family: 'Sharpie-Bold', sans-serif;
