@@ -24,7 +24,7 @@ async function handler (req, res) {
   const token = await data.json()
   const params = new URLSearchParams(token)
 
-  return res.redirect(`/my-cvs?${params}`)
+  return res.redirect(`/#/my-cvs?${params}`)
 }
 
 export default allowCors(handler)
