@@ -46,10 +46,19 @@ export const useEducationStore = defineStore('education', () => {
     }))
   }
 
+  function addEducation () {
+    educations.value.push({
+      title: '',
+      institution: '',
+      startingDate: '',
+      finishingDate: ''
+    })
+  }
+
   function parseDate (date) {
     const monthYear = new Date(date).toLocaleString('es', { year: 'numeric' })
     return monthYear
   }
 
-  return { educations, set, educationSection }
+  return { educations, set, addEducation, educationSection }
 })

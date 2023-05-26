@@ -31,9 +31,9 @@ export const usePersonalInformationStore = defineStore('personalInformation', ()
           phoneNumber.value,
           email.value,
           ' ',
-          ...webpages.value.map(url => ({
-            text: url,
-            link: url
+          ...webpages.value.map(webpage => ({
+            text: webpage.url,
+            link: webpage.url
           }))
         ]],
         style: 'gray'
@@ -48,8 +48,12 @@ export const usePersonalInformationStore = defineStore('personalInformation', ()
     address.value = `${data.cityName}, ${data.country}`
     phoneNumber.value = data.mobilePhone ?? data.internationalPhone
     email.value = data.email
-    webpages.value = data.webpages.map(webpage => webpage.url)
+    webpages.value = data.webpages
   }
 
-  return { fullName, jobTitle, address, phoneNumber, email, webpages, set, personalInformationSection }
+  function addWebpage () {
+    webpages.value.push({ url: '' })
+  }
+
+  return { fullName, jobTitle, address, phoneNumber, email, webpages, set, addWebpage, personalInformationSection }
 })

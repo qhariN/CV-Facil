@@ -51,6 +51,16 @@ export const useWorkExperienceStore = defineStore('workExperience', () => {
     }))
   }
 
+  function addExperience () {
+    experiences.value.push({
+      job: '',
+      company: '',
+      startingDate: '',
+      finishingDate: '',
+      description: ''
+    })
+  }
+
   function parseDate (date) {
     const monthYear = new Date(date).toLocaleString('es', { month: 'short', year: 'numeric' })
     return capitalizeFirstLetter(monthYear)
@@ -60,5 +70,5 @@ export const useWorkExperienceStore = defineStore('workExperience', () => {
     return string[0].toUpperCase() + string.slice(1)
   }
 
-  return { experiences, set, workExperienceSection }
+  return { experiences, set, addExperience, workExperienceSection }
 })

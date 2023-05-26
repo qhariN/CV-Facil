@@ -26,5 +26,10 @@ const personalInformationStore = usePersonalInformationStore()
       <label for="email">Correo electrónico</label>
       <input v-model="personalInformationStore.email" id="email" type="text" class="border">
     </div>
+    <button @click="personalInformationStore.addWebpage">Añadir página web</button>
+    <div v-for="(webpage, index) in personalInformationStore.webpages" :key="index" class="flex flex-col">
+      <label for="webpage-{{ index }}">Páginas web</label>
+      <input v-model="webpage.url" id="webpage-{{ index }}" type="text" class="border">
+    </div>
   </div>
 </template>

@@ -166,9 +166,13 @@ export const useResumePreviewerStore = defineStore('resumePreviewer', () => {
     })
   }, 1000)
 
-  watch([currentPage, personalInformationStore], () => {
-    render()
-  }, { immediate: true })
+  watch([
+    currentPage,
+    personalInformationStore.$state,
+    professionalProfileStore.$state,
+    workExperienceStore.$state,
+    educationStore.$state
+  ], () => render(), { immediate: true })
 
   function previousPage () {
     if (currentPage.value > 1) {
