@@ -11,6 +11,7 @@ export const useInfojobsStore = defineStore('infojobs', () => {
   function verifyAccessToken (newAccessToken, fn) {
     if (newAccessToken) {
       localStorage.setItem('access_token', newAccessToken)
+      accessToken.value = newAccessToken
       router.push('my-cvs')
     } else {
       const hasAccessToken = localStorage.getItem('access_token')
@@ -30,30 +31,37 @@ export const useInfojobsStore = defineStore('infojobs', () => {
       })
   }
 
+  const BASE_URL = '/api/infojobs/curriculum'
+
   function getCurriculums () {
-    const data = fetch('/api/infojobs/curriculum').get()
+    const data = fetch(BASE_URL).get()
     return data.json()
   }
 
   function getPersonalData (curriculumId) {
-    const data = fetch(`/api/infojobs/curriculum/${curriculumId}/personaldata`).get()
+    const data = fetch(`${BASE_URL}/${curriculumId}/personaldata`).get()
     return data.json()
   }
 
   function getCvText (curriculumId) {
-    const data = fetch(`/api/infojobs/curriculum/${curriculumId}/cvtext`).get()
+    const data = fetch(`${BASE_URL}/${curriculumId}/cvtext`).get()
+    return data.json()
+  }
+
+  function updateCvText (curriculumId, cvText) {
+    const data = fetch(`${BASE_URL}/${curriculumId}/cvtext`).put(cvText)
     return data.json()
   }
 
   function getExperience (curriculumId) {
-    const data = fetch(`/api/infojobs/curriculum/${curriculumId}/experience`).get()
+    const data = fetch(`${BASE_URL}/${curriculumId}/experience`).get()
     return data.json()
   }
 
   function getEducation (curriculumId) {
-    const data = fetch(`/api/infojobs/curriculum/${curriculumId}/education`).get()
+    const data = fetch(`${BASE_URL}/${curriculumId}/education`).get()
     return data.json()
   }
 
-  return { accessToken, verifyAccessToken, login, getCurriculums, getPersonalData, getCvText, getExperience, getEducation }
+  return { accessToken, verifyAccessToken, login, getCurriculums, getPersonalData, getCvText, updateCvText, getExperience, getEducation }
 })

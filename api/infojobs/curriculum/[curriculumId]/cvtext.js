@@ -9,15 +9,24 @@ async function handler (req, res) {
   const base64Credentials = Buffer.from(`${clientId}:${clientSecret}`).toString('base64')
 
   const { curriculumId } = req.query
-
-  const data = wretch(`https://api.infojobs.net/api/1/curriculum/${curriculumId}/cvtext`)
+  const endpoint = `https://api.infojobs.net/api/1/curriculum/${curriculumId}/cvtext`
+  const requestConfiguration = wretch(endpoint)
     .accept('application/json')
     .auth(`Basic ${base64Credentials}, ${bearer}`)
-    .get()
 
-  const cvtext = await data.json()
+  if (req.method === 'GET') {
+    const request = requestConfiguration.get()
+    const data = await request.json()
+    return res.json(data)
+  }
 
-  return res.json(cvtext)
+  if (req.method === 'PUT') {
+    const request = requestConfiguration.put(req.body)
+    await request.json()
+    return res.json()
+  }
+
+  return res.status(405).json({ error: 'Method not allowed' })
 }
 
 export default allowCors(handler)

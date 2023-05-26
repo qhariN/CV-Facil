@@ -1,9 +1,20 @@
 <script setup>
+import { useInfojobsStore } from '../stores/infojobs'
+import { useProfessionalProfileStore } from '../stores/professional-profile'
 import { useResumePreviewerStore } from '../stores/resume-previewer'
 import ChevronLeft from './icons/ChevronLeft.vue'
 import ChevronRight from './icons/ChevronRight.vue'
 
 const resumePreviewer = useResumePreviewerStore()
+const infojobsStore = useInfojobsStore()
+const professionalProfileStore = useProfessionalProfileStore()
+
+async function exportCurriculum () {
+  const cvtext = {
+    cvtext: professionalProfileStore.description
+  }
+  infojobsStore.updateCvText('d43a6862-40fa-4d9f-8865-06c2caf56776', cvtext)
+}
 </script>
 
 <template>
@@ -21,6 +32,9 @@ const resumePreviewer = useResumePreviewerStore()
       <canvas id="the-canvas" class="rounded-lg shadow"></canvas>
     </div>
     <div class="flex justify-center items-center gap-3 p-5 pb-12">
+      <button @click="exportCurriculum" type="button" class="px-7 py-4 bg-gray-200 rounded-full">
+        Exportar a InfoJobs
+      </button>
       <button @click="resumePreviewer.download" type="button" class="px-7 py-4 bg-gray-200 rounded-full">
         Descargar CV
       </button>
