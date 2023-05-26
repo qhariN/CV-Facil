@@ -47,8 +47,8 @@ async function selectCurriculum (curriculum) {
 </script>
 
 <template>
-  <div class="flex flex-col items-center gap-8 w-80">
-    <template v-if="curriculums.length">
+  <Transition name="fade" mode="out-in">
+    <div v-if="curriculums.length" class="flex flex-col items-center gap-8 w-80">
       <h2 class="text-4xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-t from-stone-800 to-black/80">
         Selecciona un<br>
         currículum
@@ -65,7 +65,7 @@ async function selectCurriculum (curriculum) {
           </button>
         </li>
       </ul>
-    </template>
+    </div>
     <div v-else class="text-center space-y-3">
       <h2 class="text-xl font-bold text-center text-stone-700">
         Cargando currículums
@@ -76,5 +76,5 @@ async function selectCurriculum (curriculum) {
         <span class="w-3 h-3 rounded-full bg-stone-200 animate-blink animation-delay-300"></span>
       </span>
     </div>
-  </div>
+  </Transition>
 </template>
