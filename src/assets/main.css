@@ -10,98 +10,8 @@
   src: url('/fonts/Sharpie-Bold.woff2') format('woff2');
 }
 
-@font-face {
-  font-family: 'Ranade';
-  font-style: normal;
-  font-weight: 100;
-  font-display: swap;
-  src: url('/fonts/Ranade-Thin.woff2') format('woff2');
-}
-
-
-@font-face {
-  font-family: 'Ranade';
-  font-style: italic;
-  font-weight: 100;
-  font-display: swap;
-  src: url('/fonts/Ranade-ThinItalic.woff2') format('woff2');
-}
-
-
-@font-face {
-  font-family: 'Ranade';
-  font-style: normal;
-  font-weight: 300;
-  font-display: swap;
-  src: url('/fonts/Ranade-Light.woff2') format('woff2');
-}
-
-
-@font-face {
-  font-family: 'Ranade';
-  font-style: italic;
-  font-weight: 300;
-  font-display: swap;
-  src: url('/fonts/Ranade-LightItalic.woff2') format('woff2');
-}
-
-
-@font-face {
-  font-family: 'Ranade';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url('/fonts/Ranade-Regular.woff2') format('woff2');
-}
-
-
-@font-face {
-  font-family: 'Ranade';
-  font-style: italic;
-  font-weight: 400;
-  font-display: swap;
-  src: url('/fonts/Ranade-Italic.woff2') format('woff2');
-}
-
-
-@font-face {
-  font-family: 'Ranade';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url('/fonts/Ranade-Medium.woff2') format('woff2');
-}
-
-
-@font-face {
-  font-family: 'Ranade';
-  font-style: italic;
-  font-weight: 500;
-  font-display: swap;
-  src: url('/fonts/Ranade-MediumItalic.woff2') format('woff2');
-}
-
-
-@font-face {
-  font-family: 'Ranade';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url('/fonts/Ranade-Bold.woff2') format('woff2');
-}
-
-
-@font-face {
-  font-family: 'Ranade';
-  font-style: italic;
-  font-weight: 700;
-  font-display: swap;
-  src: url('/fonts/Ranade-BoldItalic.woff2') format('woff2');
-}
-
 @layer base {
   body {
-    font-family: 'Ranade', sans-serif;
     background-color: #f3f4f6;
     opacity: 1;
     background-image:  linear-gradient(#F1F1F1 2px, transparent 2px), linear-gradient(90deg, #F1F1F1 2px, transparent 2px), linear-gradient(#F1F1F1 1px, transparent 1px), linear-gradient(90deg, #F1F1F1 1px, #f3f4f6 1px);
@@ -113,11 +23,62 @@
   }
 }
 
+/* fade transition */
+
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.5s ease;
+  transition: opacity 0.3s ease;
 }
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
+}
+
+/* race loader */
+
+.race-by {
+  --uib-size: 160px;
+  --uib-speed: 1.4s;
+  --uib-color: #57534e;
+  --uib-line-weight: 7px;
+
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--uib-line-weight);
+  width: var(--uib-size);
+  border-radius: calc(var(--uib-line-weight) / 2);
+  overflow: hidden;
+  transform: translate3d(0, 0, 0);
+}
+
+.race-by::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: var(--uib-color);
+  opacity: 0.1;
+}
+
+.race-by::after {
+  content: '';
+  height: 100%;
+  width: 100%;
+  border-radius: calc(var(--uib-line-weight) / 2);
+  animation: raceBy var(--uib-speed) ease-in-out infinite;
+  transform: translateX(-100%);
+  background-color: var(--uib-color);
+}
+
+@keyframes raceBy {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
 }

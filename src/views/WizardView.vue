@@ -9,7 +9,7 @@ import WorkExperience from '../components/form/WorkExperience.vue'
 <template>
   <div class="min-w-full min-h-screen flex">
     <div class="w-1/2 min-h-screen">
-      <div class="w-full h-full bg-gray-50 flex flex-col justify-center items-center gap-12">
+      <div class="w-full h-full flex flex-col justify-center items-center gap-12">
         <PersonalInfoForm />
         <ProfessionalProfile />
         <WorkExperience />

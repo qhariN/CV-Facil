@@ -17,6 +17,7 @@ const workExperienceStore = useWorkExperienceStore()
 const educationStore = useEducationStore()
 
 const curriculums = ref([])
+const hasSelectedCurriculum = ref(false)
 
 onMounted(() => {
   watch(() => route.query.access_token, value => {
@@ -30,6 +31,7 @@ async function getCurriculums () {
 }
 
 async function selectCurriculum (curriculum) {
+  hasSelectedCurriculum.value = true
   const curriculumId = curriculum.code
   const data = await Promise.all([
     infojobsStore.getPersonalData(curriculumId),
@@ -48,7 +50,13 @@ async function selectCurriculum (curriculum) {
 
 <template>
   <Transition name="fade" mode="out-in">
-    <div v-if="curriculums.length" class="flex flex-col items-center gap-8 w-80">
+    <div v-if="!curriculums.length" class="flex flex-col items-center gap-3">
+      <h2 class="text-xl font-bold text-center text-stone-700">
+        Cargando currículums
+      </h2>
+      <div class="race-by"></div>
+    </div>
+    <div v-else-if="!hasSelectedCurriculum" class="flex flex-col items-center gap-8 w-80">
       <h2 class="text-4xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-t from-stone-800 to-black/80">
         Selecciona un<br>
         currículum
@@ -66,15 +74,11 @@ async function selectCurriculum (curriculum) {
         </li>
       </ul>
     </div>
-    <div v-else class="text-center space-y-3">
+    <div v-else class="flex flex-col items-center gap-3">
       <h2 class="text-xl font-bold text-center text-stone-700">
-        Cargando currículums
+        Cargando datos del currículum
       </h2>
-      <span class="inline-flex items-center gap-3">
-        <span class="w-3 h-3 rounded-full bg-stone-200 animate-blink"></span>
-        <span class="w-3 h-3 rounded-full bg-stone-200 animate-blink animation-delay-150"></span>
-        <span class="w-3 h-3 rounded-full bg-stone-200 animate-blink animation-delay-300"></span>
-      </span>
+      <div class="race-by"></div>
     </div>
   </Transition>
 </template>
