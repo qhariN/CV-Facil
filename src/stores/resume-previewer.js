@@ -23,6 +23,7 @@ export const useResumePreviewerStore = defineStore('resumePreviewer', () => {
   const instance = ref(null)
   const totalPages = ref(1)
   const currentPage = ref(1)
+  const isRendering = ref(true)
 
   const personalInformationStore = usePersonalInformationStore()
   const professionalProfileStore = useProfessionalProfileStore()
@@ -156,7 +157,7 @@ export const useResumePreviewerStore = defineStore('resumePreviewer', () => {
           }
           const renderTask = page.render(renderContext)
           renderTask.promise.then(() => {
-            console.log('Page rendered')
+            isRendering.value = false
           })
         })
       }, reason => {
@@ -172,7 +173,10 @@ export const useResumePreviewerStore = defineStore('resumePreviewer', () => {
     professionalProfileStore.$state,
     workExperienceStore.$state,
     educationStore.$state
-  ], () => render(), { immediate: true })
+  ], () => {
+    isRendering.value = true
+    render()
+  })
 
   function previousPage () {
     if (currentPage.value > 1) {
@@ -191,5 +195,5 @@ export const useResumePreviewerStore = defineStore('resumePreviewer', () => {
     // instance.value.download('John Doe - CV')
   }
 
-  return { totalPages, currentPage, previousPage, nextPage, download }
+  return { render, totalPages, currentPage, isRendering, previousPage, nextPage, download }
 })

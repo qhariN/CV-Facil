@@ -1,4 +1,5 @@
 <script setup>
+import { onMounted } from 'vue'
 import { useInfojobsStore } from '../stores/infojobs'
 import { useProfessionalProfileStore } from '../stores/professional-profile'
 import { useResumePreviewerStore } from '../stores/resume-previewer'
@@ -8,6 +9,11 @@ import ChevronRight from './icons/ChevronRight.vue'
 const resumePreviewer = useResumePreviewerStore()
 const infojobsStore = useInfojobsStore()
 const professionalProfileStore = useProfessionalProfileStore()
+
+onMounted(() => {
+  resumePreviewer.isRendering = true
+  resumePreviewer.render()
+})
 
 async function exportCurriculum () {
   const cvtext = {
@@ -29,7 +35,17 @@ async function exportCurriculum () {
       </button>
     </div>
     <div class="grow flex items-center justify-center relative">
-      <canvas id="the-canvas" class="rounded-lg opacity-70 shadow-lg shadow-stone-400/20"></canvas>
+      <Transition name="fade">
+        <canvas v-show="!resumePreviewer.isRendering" id="the-canvas" class="rounded-lg opacity-70 shadow-lg shadow-stone-400/20"></canvas>
+      </Transition>
+      <Transition name="fade">
+        <div v-show="resumePreviewer.isRendering" class="absolute flex flex-col items-center gap-3">
+          <h2 class="text-xl font-bold text-center text-stone-700">
+            Generando vista previa
+          </h2>
+          <div class="race-by"></div>
+        </div>
+      </Transition>
     </div>
     <div class="flex justify-center items-center gap-3 p-5 pb-12">
       <button @click="exportCurriculum" type="button" class="px-7 py-4 bg-gray-200 rounded-full">
