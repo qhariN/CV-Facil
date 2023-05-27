@@ -28,7 +28,7 @@ export const useWorkExperienceStore = defineStore('workExperience', () => {
               style: 'italic'
             },
             {
-              text: 'New York, NY',
+              text: experience.location,
               style: 'italic'
             },
             {
@@ -45,6 +45,7 @@ export const useWorkExperienceStore = defineStore('workExperience', () => {
     experiences.value = data.experience.map(experience => ({
       job: experience.job,
       company: experience.company,
+      location: '',
       startingDate: parseDate(experience.startingDate),
       finishingDate: experience.onCourse ? 'Actualidad' : parseDate(experience.finishingDate),
       description: experience.description
@@ -55,6 +56,7 @@ export const useWorkExperienceStore = defineStore('workExperience', () => {
     experiences.value.push({
       job: '',
       company: '',
+      location: '',
       startingDate: '',
       finishingDate: '',
       description: ''

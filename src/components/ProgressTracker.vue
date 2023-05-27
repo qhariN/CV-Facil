@@ -41,7 +41,7 @@ const sections = [
 </script>
 
 <template>
-  <div class="flex flex-col items-center gap-8">
+  <div class="flex flex-col items-center gap-8 w-full max-w-xl">
     <h2 class="text-3xl font-bold text-center text-stone-600">
       Elige una sección<br>
       para comenzar

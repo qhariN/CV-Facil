@@ -29,6 +29,7 @@ const router = createRouter({
       children: [
         {
           path: '',
+          name: 'progress-tracker',
           component: () => import('../components/ProgressTracker.vue')
         },
         {

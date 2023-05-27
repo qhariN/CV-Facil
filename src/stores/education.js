@@ -28,7 +28,7 @@ export const useEducationStore = defineStore('education', () => {
               style: 'italic'
             },
             {
-              text: 'New York, NY',
+              text: education.location,
               style: 'italic'
             }
           ])).flat()
@@ -41,6 +41,7 @@ export const useEducationStore = defineStore('education', () => {
     educations.value = data.education.map(education => ({
       title: education.courseName ?? '',
       institution: education.institutionName ?? '',
+      location: '',
       startingDate: education.startingDate ? parseDate(education.startingDate) : '',
       finishingDate: education.stillEnrolled ? 'Actualidad' : parseDate(education.finishingDate)
     }))
@@ -50,6 +51,7 @@ export const useEducationStore = defineStore('education', () => {
     educations.value.push({
       title: '',
       institution: '',
+      location: '',
       startingDate: '',
       finishingDate: ''
     })

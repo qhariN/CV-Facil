@@ -2,7 +2,8 @@ import { computed, ref } from 'vue'
 import { defineStore } from 'pinia'
 
 export const usePersonalInformationStore = defineStore('personalInformation', () => {
-  const fullName = ref('')
+  const firstName = ref('')
+  const lastName = ref('')
   const jobTitle = ref('')
   const address = ref('')
   const phoneNumber = ref('')
@@ -15,7 +16,7 @@ export const usePersonalInformationStore = defineStore('personalInformation', ()
         width: '*',
         columns: [[
           {
-            text: fullName.value,
+            text: `${firstName.value} ${lastName.value}`,
             style: 'fullName'
           },
           {
@@ -43,7 +44,8 @@ export const usePersonalInformationStore = defineStore('personalInformation', ()
   }))
 
   function set (data) {
-    fullName.value = `${data.name} ${data.surname1} ${data.surname2}`
+    firstName.value = data.name
+    lastName.value = `${data.surname1} ${data.surname2}`
     jobTitle.value = data.jobTitle
     address.value = `${data.cityName}, ${data.country}`
     phoneNumber.value = data.mobilePhone ?? data.internationalPhone
@@ -55,5 +57,5 @@ export const usePersonalInformationStore = defineStore('personalInformation', ()
     webpages.value.push({ url: '' })
   }
 
-  return { fullName, jobTitle, address, phoneNumber, email, webpages, set, addWebpage, personalInformationSection }
+  return { firstName, lastName, jobTitle, address, phoneNumber, email, webpages, set, addWebpage, personalInformationSection }
 })
