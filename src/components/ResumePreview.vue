@@ -29,10 +29,9 @@ async function exportCurriculum () {
       </button>
     </div>
     <div class="grow flex items-center justify-center relative">
-      <div class="bg w-full h-full absolute"></div>
-      <canvas id="the-canvas" class="rounded-lg opacity-70 shadow-lg shadow-stone-400/30"></canvas>
+      <canvas id="the-canvas" class="rounded-lg opacity-70 shadow-lg shadow-stone-400/20"></canvas>
     </div>
-    <div class="flex justify-center items-center gap-3 p-5 pb-14">
+    <div class="flex justify-center items-center gap-3 p-5 pb-12">
       <button @click="exportCurriculum" type="button" class="px-7 py-4 bg-gray-200 rounded-full">
         Exportar a InfoJobs
       </button>
@@ -42,12 +41,3 @@ async function exportCurriculum () {
     </div>
   </div>
 </template>
-
-<style>
-.bg {
-  background-image: radial-gradient(at 27% 37%,#3a8bfd 0,transparent 0),radial-gradient(at 97% 21%,#855afc 0,transparent 50%),radial-gradient(at 52% 99%,#E93E40 0,transparent 50%),radial-gradient(at 10% 29%,#167DB7 0,transparent 50%),radial-gradient(at 97% 96%,#F1C40F 0,transparent 50%),radial-gradient(at 33% 50%,#167DB7 0,transparent 50%),radial-gradient(at 79% 53%,#FF6340 0,transparent 50%);
-  filter: blur(100px) saturate(150%);
-  opacity: .1;
-  z-index: -1;
-}
-</style>

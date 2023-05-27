@@ -61,8 +61,8 @@ async function selectCurriculum (curriculum) {
         Selecciona un<br>
         currículum
       </h2>
-      <ul class="z-10 space-y-4 w-full">
-        <li @click="selectCurriculum(curriculum)" v-for="(curriculum, index) in curriculums" :key="index" class="group flex items-center gap-5 transition cursor-pointer bg-gray-100/10 hover:bg-gray-100/20 backdrop-blur-sm rounded-2xl border border-stone-300 px-7 py-6 shadow-lg shadow-stone-400/10 hover:shadow-stone-400/20">
+      <ul class="space-y-4 w-full">
+        <li @click="selectCurriculum(curriculum)" v-for="(curriculum, index) in curriculums" :key="index" class="group flex items-center gap-5 transition cursor-pointer bg-stone-100/10 hover:bg-stone-100/20 rounded-2xl border border-stone-300 px-7 py-6 shadow-lg shadow-stone-400/10 hover:shadow-stone-400/20">
           <div>
             <h2 class="font-bold text-xl text-stone-600">{{ curriculum.name }}</h2>
             <span v-if="curriculum.principal" class="text-lg text-stone-400">Principal</span>
