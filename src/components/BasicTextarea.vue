@@ -46,7 +46,7 @@ defineEmits(['update:modelValue'])
   }
   .input-field > textarea {
     @apply w-full;
-    @apply bg-stone-200/50;
+    @apply bg-stone-200/40;
     @apply outline-stone-500;
     @apply rounded-2xl;
     @apply px-3 pt-6 pb-2;
@@ -62,10 +62,10 @@ defineEmits(['update:modelValue'])
     @apply text-stone-400;
   }
   .input-field > textarea:hover {
-    @apply bg-stone-200/70;
+    @apply bg-stone-200/60;
   }
   .input-field > textarea:focus {
-    @apply bg-stone-200/70;
+    @apply bg-stone-200/60;
   }
 
   .input-field > label {

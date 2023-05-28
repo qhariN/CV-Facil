@@ -28,7 +28,7 @@ const educationStore = useEducationStore()
           <BasicInput v-model="education.institution" id="institution-{{ index }}" label="Institución" placeholder="Universidad de Oxford" class="grow" />
         </div>
         <div class="flex gap-6">
-          <BasicInput v-model="education.location" id="location-{{ index }}" label="Ubicación" placeholder="Oxford, RU" class="grow" />
+          <BasicInput v-model="education.location" id="location-{{ index }}" label="Ubicación" placeholder="Remoto" class="grow" />
           <BasicInput v-model="education.startingDate" id="starting-date-{{ index }}" label="Inicio" placeholder="2015" class="grow" />
           <BasicInput v-model="education.finishingDate" id="finishing-date-{{ index }}" label="Fin" placeholder="2019" class="grow" />
         </div>

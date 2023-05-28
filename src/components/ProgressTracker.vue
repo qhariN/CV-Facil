@@ -19,7 +19,7 @@ const sections = [
   },
   {
     name: 'Experiencia laboral',
-    description: 'Detalla tu historial laboral, incluyendo los nombres de las empresas, los cargos que ocupaste, las responsabilidades clave y los logros destacados',
+    description: 'Detalla tu historial laboral, incluyendo las empresas, los cargos, las responsabilidades clave y los logros destacados',
     route: 'work-experience'
   },
   {
@@ -29,7 +29,7 @@ const sections = [
   },
   {
     name: 'Habilidades técnicas',
-    description: 'Destaca las habilidades técnicas, interpersonales y profesionales que posees y que son relevantes para el puesto que deseas',
+    description: 'Destaca las habilidades interpersonales y profesionales que posees y que son relevantes para el puesto que deseas',
     route: 'personal-information'
   },
   {
@@ -41,12 +41,12 @@ const sections = [
 </script>
 
 <template>
-  <div class="flex flex-col items-center gap-8 w-full max-w-xl">
+  <div class="flex flex-col items-center gap-10 w-full max-w-xl">
     <h2 class="text-3xl font-bold text-center text-stone-600">
       Elige una sección<br>
       para comenzar
     </h2>
-    <ul class="max-w-lg rounded-2xl border border-stone-300 shadow-lg shadow-stone-400/10 divide-y divide-stone-300 text-sm overflow-hidden">
+    <ul class="max-w-lg rounded-2xl border border-stone-200 shadow-lg shadow-stone-400/10 divide-y divide-stone-200 text-sm overflow-hidden">
       <ProgressSection v-for="(section, index) in sections" :key="index" :name="section.name" :description="section.description" :route="section.route" />
     </ul>
   </div>
