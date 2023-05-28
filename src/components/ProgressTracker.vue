@@ -30,12 +30,12 @@ const sections = [
   {
     name: 'Habilidades técnicas',
     description: 'Destaca las habilidades interpersonales y profesionales que posees y que son relevantes para el puesto que deseas',
-    route: 'personal-information'
+    route: 'technical-skills'
   },
   {
     name: 'Información adicional',
     description: 'Agrega cualquier información relevante que desees destacar y que no encaje en las secciones anteriores',
-    route: 'my-cvs'
+    route: 'aditional-skills'
   }
 ]
 </script>

@@ -4,6 +4,11 @@ defineProps({
     type: String,
     required: true
   },
+  rows: {
+    type: Number,
+    required: false,
+    default: 4
+  },
   size: {
     type: String,
     required: false,
@@ -31,7 +36,7 @@ defineEmits(['update:modelValue'])
     <textarea
       :id="id"
       :placeholder="placeholder"
-      rows="4"
+      :rows="rows"
       required
       :value="modelValue"
       @input="$emit('update:modelValue', $event.target.value)"

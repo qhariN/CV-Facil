@@ -57,6 +57,16 @@ const router = createRouter({
           path: 'education',
           name: 'education',
           component: () => import('../components/form/EducationForm.vue')
+        },
+        {
+          path: 'technical-skills',
+          name: 'technical-skills',
+          component: () => import('../components/form/TechnicalSkillsForm.vue')
+        },
+        {
+          path: 'aditional-skills',
+          name: 'aditional-skills',
+          component: () => import('../components/form/AditionalSkillsForm.vue')
         }
       ]
     }

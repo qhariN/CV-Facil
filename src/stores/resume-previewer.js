@@ -9,6 +9,8 @@ import { usePersonalInformationStore } from './personal-information'
 import { useProfessionalProfileStore } from './professional-profile'
 import { useWorkExperienceStore } from './work-experience'
 import { useEducationStore } from './education'
+import { useTechnicalSkillsStore } from './technical-skills'
+import { useAditionalSkillsStore } from './aditional-skills'
 
 export const useResumePreviewerStore = defineStore('resumePreviewer', () => {
   pdfMake.fonts = pdfFonts
@@ -29,6 +31,8 @@ export const useResumePreviewerStore = defineStore('resumePreviewer', () => {
   const professionalProfileStore = useProfessionalProfileStore()
   const workExperienceStore = useWorkExperienceStore()
   const educationStore = useEducationStore()
+  const technicalSkillsStore = useTechnicalSkillsStore()
+  const aditionalSkillsStore = useAditionalSkillsStore()
 
   const render = debounce(() => {
     const documentDefinitions = {
@@ -42,91 +46,9 @@ export const useResumePreviewerStore = defineStore('resumePreviewer', () => {
         hr(),
         educationStore.educationSection,
         hr(),
-        {
-          columns: [
-            {
-              width: 120,
-              text: 'Habilidades técnicas',
-              style: 'sectionTitle'
-            },
-            {
-              width: '*',
-              columns: [[
-                {
-                  text: 'Lenguajes y tecnologías',
-                  style: 'subSectionTitle'
-                },
-                {
-                  text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed neque velit, lobortis ut magna',
-                  style: 'gray'
-                },
-                {
-                  text: 'Tecnologías front-end',
-                  style: ['subSectionTitle', 'mt10']
-                },
-                {
-                  text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed neque velit, lobortis ut magna',
-                  style: 'gray'
-                },
-                {
-                  text: 'Tecnologías back-end',
-                  style: ['subSectionTitle', 'mt10']
-                },
-                {
-                  text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed neque velit, lobortis ut magna',
-                  style: 'gray'
-                },
-                {
-                  text: 'Databases',
-                  style: ['subSectionTitle', 'mt10']
-                },
-                {
-                  text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed neque velit, lobortis ut magna',
-                  style: 'gray'
-                },
-                {
-                  text: 'Tecnologías CI/CD',
-                  style: ['subSectionTitle', 'mt10']
-                },
-                {
-                  text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed neque velit, lobortis ut magna',
-                  style: 'gray'
-                },
-                {
-                  text: 'Conceptos',
-                  style: ['subSectionTitle', 'mt10']
-                },
-                {
-                  text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed neque velit, lobortis ut magna',
-                  style: 'gray'
-                }
-              ]]
-            }
-          ]
-        },
+        technicalSkillsStore.technicalSkillsSection,
         hr(),
-        {
-          columns: [
-            {
-              width: 120,
-              text: 'Información adicional',
-              style: 'sectionTitle'
-            },
-            {
-              width: '*',
-              columns: [[
-                {
-                  text: 'Idiomas',
-                  style: 'subSectionTitle'
-                },
-                {
-                  text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed neque velit, lobortis ut magna',
-                  style: 'gray'
-                }
-              ]]
-            }
-          ]
-        }
+        aditionalSkillsStore.aditionalSkillsSection
       ],
       ...setupStyles()
     }
@@ -172,7 +94,9 @@ export const useResumePreviewerStore = defineStore('resumePreviewer', () => {
     personalInformationStore.$state,
     professionalProfileStore.$state,
     workExperienceStore.$state,
-    educationStore.$state
+    educationStore.$state,
+    technicalSkillsStore.$state,
+    aditionalSkillsStore.$state
   ], () => {
     isRendering.value = true
     render()
