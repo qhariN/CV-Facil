@@ -6,7 +6,7 @@ const clientSecret = process.env.CLIENT_SECRET ?? ''
 const callbackUri = process.env.CALLBACK_URI ?? ''
 
 async function handler (req, res) {
-  const { code } = req.query
+  const { code, state } = req.query
 
   const authParams = new URLSearchParams({
     grant_type: 'authorization_code',
@@ -24,7 +24,14 @@ async function handler (req, res) {
   const token = await data.json()
   const params = new URLSearchParams(token)
 
-  return res.redirect(`/#/my-cvs?${params}`)
+  let path = ''
+  if (state === 'import') {
+    path = 'import-cv'
+  } else if (state === 'export') {
+    path = 'export-cv'
+  }
+
+  return res.redirect(`/#/${path}?${params}`)
 }
 
 export default allowCors(handler)

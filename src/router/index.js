@@ -16,9 +16,14 @@ const router = createRouter({
           component: HomeView
         },
         {
-          path: 'my-cvs',
-          name: 'my-cvs',
-          component: () => import('../views/MyCvsView.vue')
+          path: 'import-cv',
+          name: 'import-cv',
+          component: () => import('../views/ImportCvView.vue')
+        },
+        {
+          path: 'export-cv',
+          name: 'export-cv',
+          component: () => import('../views/ExportCvView.vue')
         }
       ]
     },

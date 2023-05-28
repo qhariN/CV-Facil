@@ -56,10 +56,10 @@ async function selectCurriculum (curriculum) {
       </h2>
       <div class="race-by"></div>
     </div>
-    <div v-else-if="!hasSelectedCurriculum" class="flex flex-col items-center gap-10 w-80">
-      <h2 class="text-4xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-t from-stone-800 to-black/80">
-        Selecciona un<br>
-        currículum
+    <div v-else-if="!hasSelectedCurriculum" class="flex flex-col items-center gap-10">
+      <h2 class="text-4xl font-bold text-center text-stone-700">
+        Selecciona el currículum<br>
+        a importar
       </h2>
       <ul class="space-y-4 w-full">
         <li @click="selectCurriculum(curriculum)" v-for="(curriculum, index) in curriculums" :key="index" class="group flex items-center gap-5 transition duration-300 cursor-pointer bg-stone-50/40 hover:bg-stone-50/50 rounded-2xl border border-stone-200 px-7 py-6 shadow-lg shadow-stone-400/10 hover:shadow-stone-400/30">
@@ -73,9 +73,6 @@ async function selectCurriculum (curriculum) {
           </button>
         </li>
       </ul>
-      <!-- <button type="button" class="text-xl text-white bg-gradient-to-t from-stone-800 to-black/80 hover:bg-black transition duration-300 px-8 py-4 rounded-xl shadow-lg shadow-stone-400/10 hover:shadow-stone-400/20">
-        Importar
-      </button> -->
     </div>
     <div v-else class="flex flex-col items-center gap-3">
       <h2 class="text-xl font-bold text-center text-stone-700">

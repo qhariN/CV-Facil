@@ -17,7 +17,7 @@ const infojobsStore = useInfojobsStore()
         Comenzar
       </RouterLink>
       <p class="text-xl">ó</p>
-      <button @click="infojobsStore.login" class="group text-xl bg-stone-100/30 border border-transparent hover:border-[#1D668F] transition duration-300 px-8 py-4 rounded-xl shadow-lg shadow-stone-400/10 hover:shadow-stone-400/20" type="button">
+      <button @click="infojobsStore.login('import')" class="group text-xl bg-stone-100/30 border border-transparent hover:border-[#1D668F] transition duration-300 px-8 py-4 rounded-xl shadow-lg shadow-stone-400/10 hover:shadow-stone-400/20" type="button">
         <span class="group-hover:bg-clip-text group-hover:text-transparent bg-gradient-to-r group-hover:from-[#23536E] group-hover:to-[#167DB7]">Importar de InfoJobs</span>
       </button>
     </div>

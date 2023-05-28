@@ -12,7 +12,7 @@ export const useInfojobsStore = defineStore('infojobs', () => {
     if (newAccessToken) {
       localStorage.setItem('access_token', newAccessToken)
       accessToken.value = newAccessToken
-      router.push('my-cvs')
+      router.push('import-cv')
     } else {
       const hasAccessToken = localStorage.getItem('access_token')
       if (!hasAccessToken) login()
@@ -20,8 +20,11 @@ export const useInfojobsStore = defineStore('infojobs', () => {
     }
   }
 
-  function login () {
-    window.location.href = '/api/infojobs/login'
+  function login (action) {
+    const params = new URLSearchParams({
+      ...action && { action }
+    })
+    window.location.href = `/api/infojobs/login?${params}`
   }
 
   function fetch (url) {
