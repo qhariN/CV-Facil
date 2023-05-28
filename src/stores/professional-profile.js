@@ -1,8 +1,10 @@
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { defineStore } from 'pinia'
 
 export const useProfessionalProfileStore = defineStore('professionalProfile', () => {
   const description = ref('')
+
+  init()
 
   const professionalProfileSection = computed(() => ({
     columns: [
@@ -20,6 +22,12 @@ export const useProfessionalProfileStore = defineStore('professionalProfile', ()
   }))
 
   const completed = computed(() => description.value !== '')
+
+  watch(description, () => localStorage.setItem('description', description.value))
+
+  function init () {
+    description.value = localStorage.getItem('description') || ''
+  }
 
   function set (data) {
     description.value = data.cvtext

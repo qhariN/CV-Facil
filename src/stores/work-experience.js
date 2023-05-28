@@ -1,10 +1,10 @@
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { defineStore } from 'pinia'
 
 export const useWorkExperienceStore = defineStore('workExperience', () => {
   const experiences = ref([])
 
-  addExperience()
+  init()
 
   const workExperienceSection = computed(() => ({
     columns: [
@@ -44,6 +44,14 @@ export const useWorkExperienceStore = defineStore('workExperience', () => {
   }))
 
   const completed = computed(() => experiences.value.length > 0 && experiences.value.every(experience => experience.job && experience.company && experience.location && experience.startingDate && experience.finishingDate && experience.description))
+
+  watch(experiences, (value) => localStorage.setItem('experiences', JSON.stringify(value)), { deep: true })
+
+  function init () {
+    const storedExperiences = localStorage.getItem('experiences')
+    if (!storedExperiences) addExperience()
+    else experiences.value = JSON.parse(storedExperiences)
+  }
 
   function set (data) {
     if (!data.experience.length) return

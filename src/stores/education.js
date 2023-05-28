@@ -1,10 +1,10 @@
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { defineStore } from 'pinia'
 
 export const useEducationStore = defineStore('education', () => {
   const educations = ref([])
 
-  addEducation()
+  init()
 
   const educationSection = computed(() => ({
     columns: [
@@ -40,6 +40,14 @@ export const useEducationStore = defineStore('education', () => {
   }))
 
   const completed = computed(() => educations.value.length > 0 && educations.value.every(education => education.title && education.institution && education.location && education.startingDate && education.finishingDate))
+
+  watch(educations, (value) => localStorage.setItem('educations', JSON.stringify(value)), { deep: true })
+
+  function init () {
+    const storedEducations = localStorage.getItem('educations')
+    if (!storedEducations) addEducation()
+    else educations.value = JSON.parse(storedEducations)
+  }
 
   function set (data) {
     if (!data.education) return
