@@ -1,21 +1,23 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import wretch from 'wretch'
 
 export const useInfojobsStore = defineStore('infojobs', () => {
+  const route = useRoute()
   const router = useRouter()
 
   const accessToken = ref(localStorage.getItem('access_token'))
 
   function verifyAccessToken (newAccessToken, fn) {
+    const action = route.name.split('-')[0]
     if (newAccessToken) {
       localStorage.setItem('access_token', newAccessToken)
       accessToken.value = newAccessToken
-      router.push('import-cv')
+      router.push(`${action}-cv`)
     } else {
       const hasAccessToken = localStorage.getItem('access_token')
-      if (!hasAccessToken) login()
+      if (!hasAccessToken) login(action)
       else fn()
     }
   }

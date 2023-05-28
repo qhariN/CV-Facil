@@ -22,7 +22,10 @@ async function handler (req, res) {
     .get()
 
   const token = await data.json()
-  const params = new URLSearchParams(token)
+  const params = new URLSearchParams({
+    ...token,
+    action: state
+  })
 
   let path = ''
   if (state === 'import') {
