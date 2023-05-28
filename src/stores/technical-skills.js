@@ -37,5 +37,9 @@ export const useTechnicalSkillsStore = defineStore('technicalSkills', () => {
     skills.value.push({ topic: '', list: '' })
   }
 
-  return { skills, completed, addTechnicalSkills, technicalSkillsSection }
+  function removeTechnicalSkills (index) {
+    skills.value.splice(index, 1)
+  }
+
+  return { skills, completed, addTechnicalSkills, removeTechnicalSkills, technicalSkillsSection }
 })

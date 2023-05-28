@@ -1,6 +1,7 @@
 <script setup>
 import { useEducationStore } from '../../stores/education'
 import BasicInput from '../BasicInput.vue'
+import SimpleTrash from '../icons/SimpleTrash.vue'
 
 const educationStore = useEducationStore()
 </script>
@@ -18,10 +19,13 @@ const educationStore = useEducationStore()
     <div class="space-y-6">
       <template v-for="(education, index) in educationStore.educations" :key="index">
         <div class="flex items-center gap-4 text-lg font-bold">
-          <div class="w-10 h-10 bg-stone-800 text-stone-200 rounded-full flex justify-center items-center">{{ index + 1 }}</div>
+          <div class="w-12 h-12 bg-stone-800 text-stone-200 rounded-full flex justify-center items-center">{{ index + 1 }}</div>
           <span class="text-stone-700">
             {{ education.title? education.title : 'Educación' }}
           </span>
+          <button v-if="educationStore.educations.length > 1" @click="educationStore.removeEducation(index)" type="button" class="ms-auto w-12 h-12 bg-stone-100/30 border border-stone-200 hover:border-stone-300 transition duration-300 rounded-full shadow-lg shadow-stone-400/10 hover:shadow-stone-400/20 flex justify-center items-center">
+            <SimpleTrash class="w-5 h-5" />
+          </button>
         </div>
         <div class="flex gap-6">
           <BasicInput v-model="education.title" id="title-{{ index }}" label="Título" placeholder="Ingeniería de software" class="grow" />

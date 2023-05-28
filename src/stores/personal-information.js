@@ -64,5 +64,9 @@ export const usePersonalInformationStore = defineStore('personalInformation', ()
     webpages.value.push({ url: '' })
   }
 
-  return { firstName, lastName, jobTitle, address, phoneNumber, email, webpages, completed, completedwebpages, set, addWebpage, personalInformationSection }
+  function removeWebpage (index) {
+    webpages.value.splice(index, 1)
+  }
+
+  return { firstName, lastName, jobTitle, address, phoneNumber, email, webpages, completed, completedwebpages, set, addWebpage, removeWebpage, personalInformationSection }
 })

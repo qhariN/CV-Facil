@@ -2,6 +2,7 @@
 import { useTechnicalSkillsStore } from '../../stores/technical-skills'
 import BasicInput from '../BasicInput.vue'
 import BasicTextarea from '../BasicTextarea.vue'
+import SimpleTrash from '../icons/SimpleTrash.vue'
 
 const technicalSkillsStore = useTechnicalSkillsStore()
 </script>
@@ -19,10 +20,13 @@ const technicalSkillsStore = useTechnicalSkillsStore()
     <div class="space-y-6">
       <template v-for="(skill, index) in technicalSkillsStore.skills" :key="index">
         <div class="flex items-center gap-4 text-lg font-bold">
-          <div class="w-10 h-10 bg-stone-800 text-stone-200 rounded-full flex justify-center items-center">{{ index + 1 }}</div>
+          <div class="w-12 h-12 bg-stone-800 text-stone-200 rounded-full flex justify-center items-center">{{ index + 1 }}</div>
           <span class="text-stone-700">
             {{ skill.topic? skill.topic : 'Habilidades técnicas' }}
           </span>
+          <button v-if="technicalSkillsStore.skills.length > 1" @click="technicalSkillsStore.removeTechnicalSkills(index)" type="button" class="ms-auto w-12 h-12 bg-stone-100/30 border border-stone-200 hover:border-stone-300 transition duration-300 rounded-full shadow-lg shadow-stone-400/10 hover:shadow-stone-400/20 flex justify-center items-center">
+            <SimpleTrash class="w-5 h-5" />
+          </button>
         </div>
         <BasicInput v-model="skill.topic" id="topic-{{ index }}" label="Nombre de la sección" placeholder="Tecnologías CI/CD" />
         <BasicTextarea v-model="skill.list" id="list-{{ index }}" :rows="3" label="Lista de habilidades" placeholder="Docker, Kubernetes, Jenkins, Gitlab CI, Github Actions, etc." />

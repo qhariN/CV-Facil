@@ -62,10 +62,14 @@ export const useEducationStore = defineStore('education', () => {
     })
   }
 
+  function removeEducation (index) {
+    educations.value.splice(index, 1)
+  }
+
   function parseDate (date) {
     const monthYear = new Date(date).toLocaleString('es', { year: 'numeric' })
     return monthYear
   }
 
-  return { educations, completed, set, addEducation, educationSection }
+  return { educations, completed, set, addEducation, removeEducation, educationSection }
 })

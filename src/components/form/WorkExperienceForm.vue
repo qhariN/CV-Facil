@@ -2,6 +2,7 @@
 import { useWorkExperienceStore } from '../../stores/work-experience'
 import BasicInput from '../BasicInput.vue'
 import BasicTextarea from '../BasicTextarea.vue'
+import SimpleTrash from '../icons/SimpleTrash.vue'
 
 const workExperienceStore = useWorkExperienceStore()
 </script>
@@ -19,10 +20,13 @@ const workExperienceStore = useWorkExperienceStore()
     <div class="space-y-6">
       <template v-for="(experience, index) in workExperienceStore.experiences" :key="index">
         <div class="flex items-center gap-4 text-lg font-bold">
-          <div class="w-10 h-10 bg-stone-800 text-stone-200 rounded-full flex justify-center items-center">{{ index + 1 }}</div>
+          <div class="w-12 h-12 bg-stone-800 text-stone-200 rounded-full flex justify-center items-center">{{ index + 1 }}</div>
           <span class="text-stone-700">
             {{ experience.company? experience.company : 'Experiencia laboral' }}
           </span>
+          <button v-if="workExperienceStore.experiences.length > 1" @click="workExperienceStore.removeExperience(index)" type="button" class="ms-auto w-12 h-12 bg-stone-100/30 border border-stone-200 hover:border-stone-300 transition duration-300 rounded-full shadow-lg shadow-stone-400/10 hover:shadow-stone-400/20 flex justify-center items-center">
+            <SimpleTrash class="w-5 h-5" />
+          </button>
         </div>
         <div class="flex gap-6">
           <BasicInput v-model="experience.job" id="job-{{ index }}" label="Puesto" placeholder="Desarrollador web" class="grow" />
