@@ -45,13 +45,18 @@ export const usePersonalInformationStore = defineStore('personalInformation', ()
     columnGap: 40
   }))
 
+  const completed = computed(() => firstName.value !== '' && lastName.value !== '' && jobTitle.value !== '' && address.value !== '' && phoneNumber.value !== '' && email.value !== '')
+
+  const completedwebpages = computed(() => webpages.value.length > 0 && webpages.value.every(webpage => webpage.url))
+
   function set (data) {
     firstName.value = data.name
     lastName.value = `${data.surname1} ${data.surname2}`
-    jobTitle.value = data.jobTitle
+    jobTitle.value = ''
     address.value = `${data.cityName}, ${data.country}`
     phoneNumber.value = data.mobilePhone ?? data.internationalPhone
     email.value = data.email
+    if (!data.webpages) return
     webpages.value = data.webpages
   }
 
@@ -59,5 +64,5 @@ export const usePersonalInformationStore = defineStore('personalInformation', ()
     webpages.value.push({ url: '' })
   }
 
-  return { firstName, lastName, jobTitle, address, phoneNumber, email, webpages, set, addWebpage, personalInformationSection }
+  return { firstName, lastName, jobTitle, address, phoneNumber, email, webpages, completed, completedwebpages, set, addWebpage, personalInformationSection }
 })

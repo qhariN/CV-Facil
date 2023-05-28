@@ -13,7 +13,7 @@ const technicalSkillsStore = useTechnicalSkillsStore()
         Tus habilidades técnicas
       </h2>
       <p class="font-bold text-base text-stone-400">
-        Añade las habilidades técnicas que tengas. Puedes añadir tantas como quieras.
+        Añade las habilidades interpersonales y profesionales que posees, así como las herramientas y tecnologías que conoces.
       </p>
     </div>
     <div class="space-y-6">

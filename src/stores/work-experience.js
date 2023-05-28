@@ -43,7 +43,10 @@ export const useWorkExperienceStore = defineStore('workExperience', () => {
     ]
   }))
 
+  const completed = computed(() => experiences.value.length > 0 && experiences.value.every(experience => experience.job && experience.company && experience.location && experience.startingDate && experience.finishingDate && experience.description))
+
   function set (data) {
+    if (!data.experience.length) return
     experiences.value = data.experience.map(experience => ({
       job: experience.job,
       company: experience.company,
@@ -74,5 +77,5 @@ export const useWorkExperienceStore = defineStore('workExperience', () => {
     return string[0].toUpperCase() + string.slice(1)
   }
 
-  return { experiences, set, addExperience, workExperienceSection }
+  return { experiences, completed, set, addExperience, workExperienceSection }
 })

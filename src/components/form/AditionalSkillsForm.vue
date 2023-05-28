@@ -13,7 +13,7 @@ const aditionalSkillsStore = useAditionalSkillsStore()
         Tus habilidades adicionales
       </h2>
       <p class="font-bold text-base text-stone-400">
-        Añade las habilidades adicionales que tengas. Puedes añadir tantas como quieras.
+        Añade las habilidades adicionales que tengas y que sean relevantes para el puesto que deseas.
       </p>
     </div>
     <div class="space-y-6">

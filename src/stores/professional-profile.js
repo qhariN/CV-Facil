@@ -19,9 +19,11 @@ export const useProfessionalProfileStore = defineStore('professionalProfile', ()
     ]
   }))
 
+  const completed = computed(() => description.value !== '')
+
   function set (data) {
     description.value = data.cvtext
   }
 
-  return { description, set, professionalProfileSection }
+  return { description, completed, set, professionalProfileSection }
 })

@@ -39,7 +39,10 @@ export const useEducationStore = defineStore('education', () => {
     ]
   }))
 
+  const completed = computed(() => educations.value.length > 0 && educations.value.every(education => education.title && education.institution && education.location && education.startingDate && education.finishingDate))
+
   function set (data) {
+    if (!data.education) return
     educations.value = data.education.map(education => ({
       title: education.courseName ?? '',
       institution: education.institutionName ?? '',
@@ -64,5 +67,5 @@ export const useEducationStore = defineStore('education', () => {
     return monthYear
   }
 
-  return { educations, set, addEducation, educationSection }
+  return { educations, completed, set, addEducation, educationSection }
 })

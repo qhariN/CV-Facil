@@ -31,9 +31,11 @@ export const useTechnicalSkillsStore = defineStore('technicalSkills', () => {
     ]
   }))
 
+  const completed = computed(() => skills.value.length > 0 && skills.value.every(skill => skill.topic && skill.list))
+
   function addTechnicalSkills () {
     skills.value.push({ topic: '', list: '' })
   }
 
-  return { skills, addTechnicalSkills, technicalSkillsSection }
+  return { skills, completed, addTechnicalSkills, technicalSkillsSection }
 })
