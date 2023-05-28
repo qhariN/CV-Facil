@@ -4,6 +4,8 @@ import { defineStore } from 'pinia'
 export const useWorkExperienceStore = defineStore('workExperience', () => {
   const experiences = ref([])
 
+  addExperience()
+
   const workExperienceSection = computed(() => ({
     columns: [
       {

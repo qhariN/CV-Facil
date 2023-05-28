@@ -17,6 +17,12 @@ const educationStore = useEducationStore()
     </div>
     <div class="space-y-6">
       <template v-for="(education, index) in educationStore.educations" :key="index">
+        <div class="flex items-center gap-4 text-lg font-bold">
+          <div class="w-10 h-10 bg-stone-800 text-stone-200 rounded-full flex justify-center items-center">{{ index + 1 }}</div>
+          <span class="text-stone-700">
+            {{ education.title? education.title : 'Educación' }}
+          </span>
+        </div>
         <div class="flex gap-6">
           <BasicInput v-model="education.title" id="title-{{ index }}" label="Título" placeholder="Ingeniería de software" class="grow" />
           <BasicInput v-model="education.institution" id="institution-{{ index }}" label="Institución" placeholder="Universidad de Oxford" class="grow" />

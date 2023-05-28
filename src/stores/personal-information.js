@@ -10,6 +10,8 @@ export const usePersonalInformationStore = defineStore('personalInformation', ()
   const email = ref('')
   const webpages = ref([])
 
+  addWebpage()
+
   const personalInformationSection = computed(() => ({
     columns: [
       {

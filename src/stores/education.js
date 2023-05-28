@@ -4,6 +4,8 @@ import { defineStore } from 'pinia'
 export const useEducationStore = defineStore('education', () => {
   const educations = ref([])
 
+  addEducation()
+
   const educationSection = computed(() => ({
     columns: [
       {

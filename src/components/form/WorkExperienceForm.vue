@@ -18,6 +18,12 @@ const workExperienceStore = useWorkExperienceStore()
     </div>
     <div class="space-y-6">
       <template v-for="(experience, index) in workExperienceStore.experiences" :key="index">
+        <div class="flex items-center gap-4 text-lg font-bold">
+          <div class="w-10 h-10 bg-stone-800 text-stone-200 rounded-full flex justify-center items-center">{{ index + 1 }}</div>
+          <span class="text-stone-700">
+            {{ experience.company? experience.company : 'Experiencia laboral' }}
+          </span>
+        </div>
         <div class="flex gap-6">
           <BasicInput v-model="experience.job" id="job-{{ index }}" label="Puesto" placeholder="Desarrollador web" class="grow" />
           <BasicInput v-model="experience.company" id="company-{{ index }}" label="Empresa" placeholder="Acme Inc." class="grow" />

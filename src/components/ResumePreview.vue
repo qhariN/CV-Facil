@@ -26,19 +26,19 @@ async function exportCurriculum () {
 <template>
   <div class="w-1/2 min-h-screen flex justify-start px-20 py-12">
     <div class="flex flex-col gap-5 w-full max-w-xl">
-      <div class="flex justify-center items-center gap-3 text-stone-600">
-        <button @click="resumePreviewer.previousPage" :disabled="resumePreviewer.currentPage <= 1" type="button" class="p-2 bg-stone-300/50 text-stone-500 disabled:text-stone-400/70 disabled:cursor-not-allowed rounded-full">
+      <div class="flex justify-center items-center gap-5 text-stone-600">
+        <button @click="resumePreviewer.previousPage" :disabled="resumePreviewer.currentPage <= 1" type="button" class="p-2 bg-white/60 transition duration-300 text-stone-500 disabled:text-stone-300 disabled:cursor-not-allowed rounded-full shadow-lg shadow-stone-400/10 hover:shadow-stone-400/30">
           <ChevronLeft class="w-6 h-6" />
         </button>
         Página {{ resumePreviewer.currentPage }} de {{ resumePreviewer.totalPages }}
-        <button @click="resumePreviewer.nextPage" :disabled="resumePreviewer.currentPage >= resumePreviewer.totalPages" type="button" class="p-2 bg-stone-300/50 text-stone-500 rounded-full">
+        <button @click="resumePreviewer.nextPage" :disabled="resumePreviewer.currentPage >= resumePreviewer.totalPages" type="button" class="p-2 bg-white/60 transition duration-300 text-stone-500 disabled:text-stone-300 disabled:cursor-not-allowed rounded-full shadow-lg shadow-stone-400/10 hover:shadow-stone-400/30">
           <ChevronRight class="w-6 h-6" />
         </button>
       </div>
       <div class="grow flex items-center justify-center relative min-w-[500px]">
         <div class="bg w-full h-full absolute"></div>
         <Transition name="fade">
-          <canvas v-show="!resumePreviewer.isRendering" id="the-canvas" class="rounded-lg opacity-70 shadow-lg shadow-stone-400/20"></canvas>
+          <canvas v-show="!resumePreviewer.isRendering" id="the-canvas" class="rounded-xl opacity-70 shadow-lg shadow-stone-400/20"></canvas>
         </Transition>
         <Transition name="fade">
           <div v-show="resumePreviewer.isRendering" class="absolute flex flex-col items-center gap-3">
@@ -50,11 +50,11 @@ async function exportCurriculum () {
         </Transition>
       </div>
       <div class="flex justify-center items-center gap-3">
-        <button @click="exportCurriculum" type="button" class="px-7 py-4 bg-gray-200 rounded-full">
-          Exportar a InfoJobs
+        <button @click="exportCurriculum" type="button" class="group text-xl bg-stone-50 transition duration-300 px-8 py-4 rounded-xl shadow-lg shadow-stone-400/10 hover:shadow-stone-400/30">
+          <span class="group-hover:bg-clip-text group-hover:text-transparent bg-gradient-to-r group-hover:from-[#23536E] group-hover:to-[#167DB7]">Exportar a InfoJobs</span>
         </button>
-        <button @click="resumePreviewer.download" type="button" class="px-7 py-4 bg-gray-200 rounded-full">
-          Descargar CV
+        <button @click="resumePreviewer.download" type="button" class="text-xl text-white bg-gradient-to-t from-stone-800 to-black/80 hover:bg-black transition duration-300 px-8 py-4 rounded-xl shadow-lg shadow-stone-400/10 hover:shadow-stone-400/30">
+          Descargar
         </button>
       </div>
     </div>
