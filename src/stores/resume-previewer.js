@@ -32,8 +32,11 @@ export const useResumePreviewerStore = defineStore('resumePreviewer', () => {
 
   const debouncedRender = debounce(render, 1000)
 
+  watch(currentPage, () => {
+    render()
+  })
+
   watch([
-    currentPage,
     personalInformationStore.$state,
     professionalProfileStore.$state,
     workExperienceStore.$state,
