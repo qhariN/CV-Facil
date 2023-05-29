@@ -22,11 +22,11 @@ export const useEducationStore = defineStore('education', () => {
               style: ['subSectionTitle', ...(i > 0 ? ['mt10'] : [])]
             },
             {
-              text: `en ${education.institution}`,
+              text: education.institution ? `en ${education.institution}` : '',
               style: 'subSectionTitle'
             },
             {
-              text: `${education.startingDate} - ${education.finishingDate}`,
+              text: [education.startingDate, education.finishingDate].filter(date => date).join(' - '),
               style: 'italic'
             },
             {

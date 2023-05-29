@@ -22,11 +22,11 @@ export const useWorkExperienceStore = defineStore('workExperience', () => {
               style: ['subSectionTitle', ...(i > 0 ? ['mt10'] : [])]
             },
             {
-              text: `en ${experience.company}`,
+              text: experience.company ? `en ${experience.company}` : '',
               style: 'subSectionTitle'
             },
             {
-              text: `${experience.startingDate} - ${experience.finishingDate}`,
+              text: [experience.startingDate, experience.finishingDate].filter(date => date).join(' - '),
               style: 'italic'
             },
             {
