@@ -12,7 +12,7 @@ Este proyecto utiliza las siguientes tecnologías:
 - [Pinia](https://pinia.esm.dev/)
 - [Tailwind CSS](https://tailwindcss.com/)
 
-## Variables de entorno OAUTH2
+## Variables de entorno
 
 | Variable | Descripción |
 | --- | --- |

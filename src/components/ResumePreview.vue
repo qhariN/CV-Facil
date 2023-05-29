@@ -34,12 +34,11 @@ onMounted(() => {
             <canvas v-show="!resumePreviewer.isRendering" id="the-canvas" class="rounded-xl opacity-70 shadow-lg shadow-stone-400/20"></canvas>
           </Transition>
           <Transition name="fade">
-            <div v-show="resumePreviewer.isRendering" class="absolute flex flex-col items-center">
+            <div v-show="resumePreviewer.isRendering" class="absolute flex flex-col items-center gap-3">
               <h2 class="text-xl font-bold text-center text-stone-700">
                 Generando vista previa
               </h2>
-              <p class="text-sm text-stone-500 mt-1">Paciencia, esto puede tardar unos segundos</p>
-              <div class="race-by mt-3"></div>
+              <div class="race-by"></div>
             </div>
           </Transition>
         </div>
