@@ -30,7 +30,23 @@ export const useResumePreviewerStore = defineStore('resumePreviewer', () => {
   const technicalSkillsStore = useTechnicalSkillsStore()
   const aditionalSkillsStore = useAditionalSkillsStore()
 
-  const render = debounce(async () => {
+  const debouncedRender = debounce(render, 1000)
+
+  watch([
+    currentPage,
+    personalInformationStore.$state,
+    professionalProfileStore.$state,
+    workExperienceStore.$state,
+    educationStore.$state,
+    technicalSkillsStore.$state,
+    aditionalSkillsStore.$state
+  ], () => {
+    debouncedRender()
+  })
+
+  async function render () {
+    isRendering.value = true
+
     const documentContent = [
       personalInformationStore.personalInformationSection,
       professionalProfileStore.professionalProfileSection,
@@ -75,20 +91,7 @@ export const useResumePreviewerStore = defineStore('resumePreviewer', () => {
       // PDF loading error
       console.error(reason)
     })
-  }, 1000)
-
-  watch([
-    currentPage,
-    personalInformationStore.$state,
-    professionalProfileStore.$state,
-    workExperienceStore.$state,
-    educationStore.$state,
-    technicalSkillsStore.$state,
-    aditionalSkillsStore.$state
-  ], () => {
-    isRendering.value = true
-    render()
-  })
+  }
 
   function previousPage () {
     if (currentPage.value > 1) {

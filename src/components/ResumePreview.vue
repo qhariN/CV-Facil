@@ -9,7 +9,6 @@ const resumePreviewer = useResumePreviewerStore()
 const infojobsStore = useInfojobsStore()
 
 onMounted(() => {
-  resumePreviewer.isRendering = true
   resumePreviewer.render()
 })
 </script>
