@@ -6,6 +6,7 @@ import { useProfessionalProfileStore } from '../stores/professional-profile'
 import { useTechnicalSkillsStore } from '../stores/technical-skills'
 import { useWorkExperienceStore } from '../stores/work-experience'
 import ProgressSection from './ProgressSection.vue'
+import ChevronLeft from './icons/ChevronLeft.vue'
 
 const personalInformationStore = usePersonalInformationStore()
 const professionalProfileStore = useProfessionalProfileStore()
@@ -61,11 +62,16 @@ const sections = [
 </script>
 
 <template>
-  <div class="flex flex-col items-center gap-10 w-full max-w-xl">
-    <h2 class="text-3xl font-bold text-center text-stone-600">
-      Elige una sección<br>
-      para comenzar
-    </h2>
+  <div class="flex flex-col items-center gap-8 w-full max-w-xl">
+    <div class="w-full relative">
+      <RouterLink to="/" title="Volver al inicio" class="absolute top-1/2 -translate-y-1/2 left-0 me-auto w-14 h-14 bg-stone-100/30 border border-stone-200 hover:border-stone-300 transition duration-300 rounded-full shadow-lg shadow-stone-400/10 hover:shadow-stone-400/20 flex justify-center items-center">
+        <ChevronLeft class="w-6 h-6" />
+      </RouterLink>
+      <h2 class="grow text-3xl font-bold text-center text-stone-600">
+        Elige una sección<br>
+        para comenzar
+      </h2>
+    </div>
     <ul class="max-w-lg rounded-2xl border border-stone-200 shadow-lg shadow-stone-400/10 divide-y divide-stone-200 text-sm overflow-hidden">
       <ProgressSection v-for="(section, index) in sections" :key="index" :name="section.name" :description="section.description" :route="section.route" :completed="section.completed" />
     </ul>

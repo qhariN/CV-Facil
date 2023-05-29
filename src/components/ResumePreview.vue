@@ -15,38 +15,41 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="w-1/2 min-h-screen flex justify-start px-20 py-12">
-    <div class="flex flex-col gap-5 w-full max-w-xl">
-      <div class="flex justify-center items-center gap-5 text-stone-600">
-        <button @click="resumePreviewer.previousPage" :disabled="resumePreviewer.currentPage <= 1" type="button" class="p-2 bg-white/60 transition duration-300 text-stone-500 disabled:text-stone-300 disabled:cursor-not-allowed rounded-full shadow-lg shadow-stone-400/10 hover:shadow-stone-400/30">
-          <ChevronLeft class="w-6 h-6" />
-        </button>
-        Página {{ resumePreviewer.currentPage }} de {{ resumePreviewer.totalPages }}
-        <button @click="resumePreviewer.nextPage" :disabled="resumePreviewer.currentPage >= resumePreviewer.totalPages" type="button" class="p-2 bg-white/60 transition duration-300 text-stone-500 disabled:text-stone-300 disabled:cursor-not-allowed rounded-full shadow-lg shadow-stone-400/10 hover:shadow-stone-400/30">
-          <ChevronRight class="w-6 h-6" />
-        </button>
-      </div>
-      <div class="grow flex items-center justify-center relative min-w-[500px]">
-        <div class="bg w-full h-full absolute"></div>
-        <Transition name="fade">
-          <canvas v-show="!resumePreviewer.isRendering" id="the-canvas" class="rounded-xl opacity-70 shadow-lg shadow-stone-400/20"></canvas>
-        </Transition>
-        <Transition name="fade">
-          <div v-show="resumePreviewer.isRendering" class="absolute flex flex-col items-center gap-3">
-            <h2 class="text-xl font-bold text-center text-stone-700">
-              Generando vista previa
-            </h2>
-            <div class="race-by"></div>
-          </div>
-        </Transition>
-      </div>
-      <div class="flex justify-center items-center gap-3">
-        <button @click="infojobsStore.login('export')" type="button" class="group text-xl bg-stone-50 transition duration-300 px-8 py-4 rounded-xl shadow-lg shadow-stone-400/10 hover:shadow-stone-400/30">
-          <span class="group-hover:bg-clip-text group-hover:text-transparent bg-gradient-to-r group-hover:from-[#23536E] group-hover:to-[#167DB7]">Exportar datos a InfoJobs</span>
-        </button>
-        <button @click="resumePreviewer.download" type="button" class="text-xl text-white bg-gradient-to-t from-stone-800 to-black/80 hover:bg-black transition duration-300 px-8 py-4 rounded-xl shadow-lg shadow-stone-400/10 hover:shadow-stone-400/30">
-          Descargar
-        </button>
+  <div class="w-1/2 min-h-screen overflow-auto">
+    <div class="w-full min-h-full flex justify-start px-12 2xl:px-20 py-12">
+
+      <div class="flex flex-col gap-5 w-full max-w-xl">
+        <div class="flex justify-center items-center gap-5 text-stone-600">
+          <button @click="resumePreviewer.previousPage" :disabled="resumePreviewer.currentPage <= 1" type="button" class="p-2 bg-white/60 transition duration-300 text-stone-500 disabled:text-stone-300 disabled:cursor-not-allowed rounded-full shadow-lg shadow-stone-400/10 hover:shadow-stone-400/30">
+            <ChevronLeft class="w-6 h-6" />
+          </button>
+          Página {{ resumePreviewer.currentPage }} de {{ resumePreviewer.totalPages }}
+          <button @click="resumePreviewer.nextPage" :disabled="resumePreviewer.currentPage >= resumePreviewer.totalPages" type="button" class="p-2 bg-white/60 transition duration-300 text-stone-500 disabled:text-stone-300 disabled:cursor-not-allowed rounded-full shadow-lg shadow-stone-400/10 hover:shadow-stone-400/30">
+            <ChevronRight class="w-6 h-6" />
+          </button>
+        </div>
+        <div class="grow flex items-center justify-center relative min-w-[500px] min-h-[707px]">
+          <div class="bg w-full h-full absolute"></div>
+          <Transition name="fade">
+            <canvas v-show="!resumePreviewer.isRendering" id="the-canvas" class="rounded-xl opacity-70 shadow-lg shadow-stone-400/20"></canvas>
+          </Transition>
+          <Transition name="fade">
+            <div v-show="resumePreviewer.isRendering" class="absolute flex flex-col items-center gap-3">
+              <h2 class="text-xl font-bold text-center text-stone-700">
+                Generando vista previa
+              </h2>
+              <div class="race-by"></div>
+            </div>
+          </Transition>
+        </div>
+        <div class="flex justify-center items-center gap-3">
+          <button @click="infojobsStore.login('export')" type="button" class="group text-xl bg-stone-50 transition duration-300 px-8 py-4 rounded-xl shadow-lg shadow-stone-400/10 hover:shadow-stone-400/30">
+            <span class="group-hover:bg-clip-text group-hover:text-transparent bg-gradient-to-r group-hover:from-[#23536E] group-hover:to-[#167DB7]">Exportar datos a InfoJobs</span>
+          </button>
+          <button @click="resumePreviewer.download" type="button" class="text-xl text-white bg-gradient-to-t from-stone-800 to-black/80 hover:bg-black transition duration-300 px-8 py-4 rounded-xl shadow-lg shadow-stone-400/10 hover:shadow-stone-400/30">
+            Descargar
+          </button>
+        </div>
       </div>
     </div>
   </div>
