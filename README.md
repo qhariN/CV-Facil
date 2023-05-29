@@ -1,35 +1,55 @@
-# resume-builder
+# CV Fácil 📃
 
-This template should help get you started developing with Vue 3 in Vite.
+CV Fácil es una aplicación web que permite crear un currículum de forma rápida y sencilla.
 
-## Recommended IDE Setup
+## Stack
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+Este proyecto utiliza las siguientes tecnologías:
 
-## Customize configuration
+- [Vercel Serverless Functions](https://vercel.com/docs/serverless-functions/introduction)
+- [Vue.js](https://vuejs.org/)
+- [Vue Router](https://router.vuejs.org/)
+- [Pinia](https://pinia.esm.dev/)
+- [Tailwind CSS](https://tailwindcss.com/)
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+## Variables de entorno OAUTH2
 
-## Project Setup
+| Variable | Descripción |
+| --- | --- |
+| SCOPE_NAMES | Nombres de los scopes separados por comas. |
+| CALLBACK_URI | URI de redireccionamiento. |
+| CLIENT_SECRET | Secreto del cliente. |
+| CLIENT_ID | ID del cliente. |
 
-```sh
-npm install
+## Desarrollo local
+
+### Instalación
+
+```bash
+# Instalar dependencias
+$ npm install
+```	
+
+### Ejecución
+
+```bash
+# Ejecutar servidor de desarrollo (frontend + backend)
+$ npm i -g vercel
+$ vercel dev
+# Ejecutar servidor de desarrollo (solo frontend)
+$ npm run dev
 ```
 
-### Compile and Hot-Reload for Development
+### Compilación
 
-```sh
-npm run dev
+```bash
+# Compilar para producción
+$ npm run build
 ```
 
-### Compile and Minify for Production
+### Lint
 
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
+```bash
+# Ejecutar linter
+$ npm run lint
 ```
