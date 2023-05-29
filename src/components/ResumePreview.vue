@@ -58,7 +58,7 @@ onMounted(() => {
 
 <style scoped>
 .bg {
-  background-image: radial-gradient(at 27% 37%,#3a8bfd 0,transparent 0),radial-gradient(at 97% 21%,#855afc 0,transparent 50%),radial-gradient(at 52% 99%,#E93E40 0,transparent 50%),radial-gradient(at 10% 29%,#167DB7 0,transparent 50%),radial-gradient(at 97% 96%,#F1C40F 0,transparent 50%),radial-gradient(at 33% 50%,#167DB7 0,transparent 50%),radial-gradient(at 79% 53%,#FF6340 0,transparent 50%);
+  background-image: radial-gradient(at 27% 37%,#00c7e4 0,transparent 0),radial-gradient(at 97% 21%,#a568f6 0,transparent 50%),radial-gradient(at 52% 99%,#e63d87 0,transparent 50%),radial-gradient(at 10% 29%,#167DB7 0,transparent 50%),radial-gradient(at 97% 96%,#fdd67e 0,transparent 50%),radial-gradient(at 33% 50%,#167DB7 0,transparent 50%),radial-gradient(at 79% 53%,#e63d87 0,transparent 50%);
   filter: blur(100px) saturate(150%);
   opacity: .1;
   z-index: -10;
