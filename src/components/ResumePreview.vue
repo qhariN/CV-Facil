@@ -1,26 +1,17 @@
 <script setup>
 import { onMounted } from 'vue'
 import { useInfojobsStore } from '../stores/infojobs'
-import { useProfessionalProfileStore } from '../stores/professional-profile'
 import { useResumePreviewerStore } from '../stores/resume-previewer'
 import ChevronLeft from './icons/ChevronLeft.vue'
 import ChevronRight from './icons/ChevronRight.vue'
 
 const resumePreviewer = useResumePreviewerStore()
 const infojobsStore = useInfojobsStore()
-const professionalProfileStore = useProfessionalProfileStore()
 
 onMounted(() => {
   resumePreviewer.isRendering = true
   resumePreviewer.render()
 })
-
-async function exportCurriculum () {
-  const cvtext = {
-    cvtext: professionalProfileStore.description
-  }
-  infojobsStore.updateCvText('d43a6862-40fa-4d9f-8865-06c2caf56776', cvtext)
-}
 </script>
 
 <template>
@@ -51,7 +42,7 @@ async function exportCurriculum () {
       </div>
       <div class="flex justify-center items-center gap-3">
         <button @click="infojobsStore.login('export')" type="button" class="group text-xl bg-stone-50 transition duration-300 px-8 py-4 rounded-xl shadow-lg shadow-stone-400/10 hover:shadow-stone-400/30">
-          <span class="group-hover:bg-clip-text group-hover:text-transparent bg-gradient-to-r group-hover:from-[#23536E] group-hover:to-[#167DB7]">Exportar a InfoJobs</span>
+          <span class="group-hover:bg-clip-text group-hover:text-transparent bg-gradient-to-r group-hover:from-[#23536E] group-hover:to-[#167DB7]">Exportar datos a InfoJobs</span>
         </button>
         <button @click="resumePreviewer.download" type="button" class="text-xl text-white bg-gradient-to-t from-stone-800 to-black/80 hover:bg-black transition duration-300 px-8 py-4 rounded-xl shadow-lg shadow-stone-400/10 hover:shadow-stone-400/30">
           Descargar

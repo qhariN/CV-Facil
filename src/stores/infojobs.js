@@ -48,6 +48,11 @@ export const useInfojobsStore = defineStore('infojobs', () => {
     return data.json()
   }
 
+  function updatePersonalData (curriculumId, personalData) {
+    const data = fetch(`${BASE_URL}/${curriculumId}/personaldata`).put(personalData)
+    return data.res()
+  }
+
   function getCvText (curriculumId) {
     const data = fetch(`${BASE_URL}/${curriculumId}/cvtext`).get()
     return data.json()
@@ -55,7 +60,7 @@ export const useInfojobsStore = defineStore('infojobs', () => {
 
   function updateCvText (curriculumId, cvText) {
     const data = fetch(`${BASE_URL}/${curriculumId}/cvtext`).put(cvText)
-    return data.json()
+    return data.res()
   }
 
   function getExperience (curriculumId) {
@@ -68,5 +73,5 @@ export const useInfojobsStore = defineStore('infojobs', () => {
     return data.json()
   }
 
-  return { accessToken, verifyAccessToken, login, getCurriculums, getPersonalData, getCvText, updateCvText, getExperience, getEducation }
+  return { accessToken, verifyAccessToken, login, getCurriculums, getPersonalData, updatePersonalData, getCvText, updateCvText, getExperience, getEducation }
 })

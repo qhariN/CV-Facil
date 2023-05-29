@@ -10,14 +10,25 @@ async function handler (req, res) {
 
   const { curriculumId } = req.query
 
-  const data = wretch(`https://api.infojobs.net/api/1/curriculum/${curriculumId}/personaldata`)
-    .accept('application/json')
-    .auth(`Basic ${base64Credentials}, ${bearer}`)
-    .get()
+  if (req.method === 'GET') {
+    const request = wretch(`https://api.infojobs.net/api/2/curriculum/${curriculumId}/personaldata`)
+      .accept('application/json')
+      .auth(`Basic ${base64Credentials}, ${bearer}`)
+      .get()
+    const data = await request.json()
+    return res.json(data)
+  }
 
-  const personalData = await data.json()
+  if (req.method === 'PUT') {
+    const request = wretch(`https://api.infojobs.net/api/3/curriculum/${curriculumId}/personaldata`)
+      .accept('application/json')
+      .auth(`Basic ${base64Credentials}, ${bearer}`)
+      .put(req.body)
+    await request.json()
+    return res.json()
+  }
 
-  return res.json(personalData)
+  return res.status(405).json({ error: 'Method not allowed' })
 }
 
 export default allowCors(handler)

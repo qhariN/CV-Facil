@@ -10,7 +10,7 @@ async function handler (req, res) {
 
   const { curriculumId } = req.query
 
-  const data = wretch(`https://api.infojobs.net/api/1/curriculum/${curriculumId}/experience`)
+  const data = wretch(`https://api.infojobs.net/api/2/curriculum/${curriculumId}/experience`)
     .accept('application/json')
     .auth(`Basic ${base64Credentials}, ${bearer}`)
     .get()
