@@ -4,7 +4,7 @@ const scopeNames = process.env.SCOPE_NAMES ?? ''
 const clientId = process.env.CLIENT_ID ?? ''
 const callbackUri = process.env.CALLBACK_URI ?? ''
 
-async function handler (req, res) {
+function handler (req, res) {
   const { action } = req.query
 
   const params = new URLSearchParams({

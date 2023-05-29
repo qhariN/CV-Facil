@@ -1,10 +1,8 @@
 import { ref, watch } from 'vue'
 import { defineStore } from 'pinia'
-import { hr, setupStyles } from '../utils/pdf-build'
-import pdfMake from 'pdfmake/build/pdfmake'
-import pdfFonts from '../utils/pdf-fonts'
 import * as pdfjs from 'pdfjs-dist/legacy/build/pdf'
 import debounce from '../utils/debounce'
+import wretch from 'wretch'
 import { usePersonalInformationStore } from './personal-information'
 import { useProfessionalProfileStore } from './professional-profile'
 import { useWorkExperienceStore } from './work-experience'
@@ -13,16 +11,14 @@ import { useTechnicalSkillsStore } from './technical-skills'
 import { useAditionalSkillsStore } from './aditional-skills'
 
 export const useResumePreviewerStore = defineStore('resumePreviewer', () => {
-  pdfMake.fonts = pdfFonts
-
   if (!pdfjs.GlobalWorkerOptions.workerSrc) {
     const WORKER_URL = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`
     pdfjs.GlobalWorkerOptions.workerSrc = WORKER_URL
   }
 
-  console.log('PdfMake and PdfJs loaded')
+  console.log('PdfJs loaded')
 
-  const instance = ref(null)
+  const dataUrl = ref(null)
   const totalPages = ref(1)
   const currentPage = ref(1)
   const isRendering = ref(true)
@@ -34,58 +30,50 @@ export const useResumePreviewerStore = defineStore('resumePreviewer', () => {
   const technicalSkillsStore = useTechnicalSkillsStore()
   const aditionalSkillsStore = useAditionalSkillsStore()
 
-  const render = debounce(() => {
-    const documentDefinitions = {
-      pageMargins: [40, 60, 40, 60],
-      content: [
-        personalInformationStore.personalInformationSection,
-        hr(),
-        professionalProfileStore.professionalProfileSection,
-        hr(),
-        workExperienceStore.workExperienceSection,
-        hr(),
-        educationStore.educationSection,
-        hr(),
-        technicalSkillsStore.technicalSkillsSection,
-        hr(),
-        aditionalSkillsStore.aditionalSkillsSection
-      ],
-      ...setupStyles()
-    }
-    instance.value = pdfMake.createPdf(documentDefinitions)
-    instance.value.getDataUrl(dataUrl => {
-      pdfjs.getDocument(dataUrl).promise.then(pdf => {
-        totalPages.value = pdf.numPages
+  const render = debounce(async () => {
+    const documentContent = [
+      personalInformationStore.personalInformationSection,
+      professionalProfileStore.professionalProfileSection,
+      workExperienceStore.workExperienceSection,
+      educationStore.educationSection,
+      technicalSkillsStore.technicalSkillsSection,
+      aditionalSkillsStore.aditionalSkillsSection
+    ]
 
-        const pageNumber = currentPage.value
-        pdf.getPage(pageNumber).then(page => {
-          console.log('Page loaded')
+    const request = wretch('/api/curriculum/render').post({ content: documentContent })
+    dataUrl.value = await request.text()
 
-          let viewport = page.getViewport({ scale: 1 })
-          const desiredWidth = 500
-          const scale = desiredWidth / viewport.width
-          viewport = page.getViewport({ scale })
+    pdfjs.getDocument(dataUrl.value).promise.then(pdf => {
+      totalPages.value = pdf.numPages
 
-          // Prepare canvas using PDF page dimensions
-          const canvas = document.getElementById('the-canvas')
-          const canvasContext = canvas.getContext('2d')
-          canvas.height = viewport.height
-          canvas.width = viewport.width
+      const pageNumber = currentPage.value
+      pdf.getPage(pageNumber).then(page => {
+        console.log('Page loaded')
 
-          // Render PDF page into canvas context
-          const renderContext = {
-            canvasContext,
-            viewport
-          }
-          const renderTask = page.render(renderContext)
-          renderTask.promise.then(() => {
-            isRendering.value = false
-          })
+        let viewport = page.getViewport({ scale: 1 })
+        const desiredWidth = 500
+        const scale = desiredWidth / viewport.width
+        viewport = page.getViewport({ scale })
+
+        // Prepare canvas using PDF page dimensions
+        const canvas = document.getElementById('the-canvas')
+        const canvasContext = canvas.getContext('2d')
+        canvas.height = viewport.height
+        canvas.width = viewport.width
+
+        // Render PDF page into canvas context
+        const renderContext = {
+          canvasContext,
+          viewport
+        }
+        const renderTask = page.render(renderContext)
+        renderTask.promise.then(() => {
+          isRendering.value = false
         })
-      }, reason => {
-        // PDF loading error
-        console.error(reason)
       })
+    }, reason => {
+      // PDF loading error
+      console.error(reason)
     })
   }, 1000)
 
@@ -115,8 +103,13 @@ export const useResumePreviewerStore = defineStore('resumePreviewer', () => {
   }
 
   function download () {
-    instance.value.open()
-    // instance.value.download('John Doe - CV')
+    if (!dataUrl.value) return
+    const link = document.createElement('a')
+    link.download = 'CV.pdf'
+    link.href = dataUrl.value
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
   }
 
   return { render, totalPages, currentPage, isRendering, previousPage, nextPage, download }

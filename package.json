@@ -16,7 +16,8 @@
     "pinia": "^2.0.36",
     "vue": "^3.3.2",
     "vue-router": "^4.2.0",
-    "wretch": "^2.5.2"
+    "wretch": "^2.5.2",
+    "xhr2": "^0.2.1"
   },
   "devDependencies": {
     "@types/pdfmake": "^0.2.2",
