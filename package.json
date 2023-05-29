@@ -9,6 +9,7 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
   },
   "dependencies": {
+    "confetti-js": "^0.0.18",
     "eslint-config-standard": "^17.0.0",
     "pdfjs-dist": "^3.6.172",
     "pdfmake": "^0.2.7",
