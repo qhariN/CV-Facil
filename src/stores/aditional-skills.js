@@ -33,6 +33,8 @@ export const useAditionalSkillsStore = defineStore('aditionalSkills', () => {
 
   const completed = computed(() => skills.value.length > 0 && skills.value.every(skill => skill.topic && skill.list))
 
+  const isEmpty = computed(() => skills.value.length <= 1 && !skills.value[0].topic && !skills.value[0].list)
+
   watch(skills, (value) => localStorage.setItem('aditionalSkills', JSON.stringify(value)), { deep: true })
 
   function init () {
@@ -49,5 +51,5 @@ export const useAditionalSkillsStore = defineStore('aditionalSkills', () => {
     skills.value.splice(index, 1)
   }
 
-  return { skills, completed, addAditionalSkills, removeAditionalSkills, aditionalSkillsSection }
+  return { skills, completed, isEmpty, addAditionalSkills, removeAditionalSkills, aditionalSkillsSection }
 })

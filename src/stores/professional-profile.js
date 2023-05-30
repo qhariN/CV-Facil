@@ -30,7 +30,7 @@ export const useProfessionalProfileStore = defineStore('professionalProfile', ()
   }
 
   function set (data) {
-    description.value = data.cvtext
+    description.value = data.cvtext.replace(' ', ' ').trim()
   }
 
   return { description, completed, set, professionalProfileSection }

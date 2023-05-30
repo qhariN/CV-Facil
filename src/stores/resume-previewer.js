@@ -56,7 +56,7 @@ export const useResumePreviewerStore = defineStore('resumePreviewer', () => {
       workExperienceStore.workExperienceSection,
       educationStore.educationSection,
       technicalSkillsStore.technicalSkillsSection,
-      aditionalSkillsStore.aditionalSkillsSection
+      ...!aditionalSkillsStore.isEmpty ? [aditionalSkillsStore.aditionalSkillsSection] : []
     ]
 
     const request = wretch('/api/curriculum/render').post({ content: documentContent })
