@@ -43,7 +43,7 @@ onMounted(() => {
       <canvas v-show="showConfetti" id="confetti-holder" class="absolute inset-0"></canvas>
     </Transition>
     <div class="w-1/2 min-h-screen shadow-xl shadow-stone-400/30 overflow-y-auto sticky">
-      <div class="w-full min-h-full flex justify-end items-center px-12 2xl:px-20 py-16">
+      <div class="w-full min-h-full flex justify-end items-center px-12 2xl:px-20 py-12">
         <RouterView v-slot="{ Component }">
           <Transition name="fade" mode="out-in">
             <component :is="Component" />
