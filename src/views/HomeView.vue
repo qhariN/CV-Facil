@@ -1,6 +1,7 @@
 <script setup>
 import { RouterLink } from 'vue-router'
 import { useInfojobsStore } from '../stores/infojobs'
+import GithubLogo from '../components/icons/GithubLogo.vue'
 
 const infojobsStore = useInfojobsStore()
 </script>
@@ -21,5 +22,11 @@ const infojobsStore = useInfojobsStore()
         <span class="group-hover:bg-clip-text group-hover:text-transparent bg-gradient-to-r group-hover:from-[#23536E] group-hover:to-[#167DB7]">Importar de InfoJobs</span>
       </button>
     </div>
+  </div>
+  <div class="absolute bottom-0 right-0 px-12 py-8">
+    <a href="https://github.com/jhormanrus/CV-Facil" class="text-stone-700/80 hover:text-stone-700 flex items-center gap-2">
+      <GithubLogo class="w-6 h-6" />
+      Ver código
+    </a>
   </div>
 </template>
