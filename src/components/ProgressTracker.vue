@@ -73,7 +73,7 @@ const sections = [
       </h2>
     </div>
     <ul class="max-w-lg rounded-2xl border border-stone-200 shadow-lg shadow-stone-400/10 divide-y divide-stone-200 text-sm overflow-hidden">
-      <ProgressSection v-for="(section, index) in sections" :key="index" :name="section.name" :description="section.description" :route="section.route" :completed="section.completed" />
+      <ProgressSection v-for="(section, index) in sections" :key="index" v-bind="section" />
     </ul>
   </div>
 </template>
