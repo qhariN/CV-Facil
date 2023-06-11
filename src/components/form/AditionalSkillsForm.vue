@@ -2,6 +2,7 @@
 import { useAditionalSkillsStore } from '../../stores/aditional-skills'
 import BasicInput from '../BasicInput.vue'
 import BasicTextarea from '../BasicTextarea.vue'
+import RouterButton from '../RouterButton.vue'
 import SimpleTrash from '../icons/SimpleTrash.vue'
 
 const aditionalSkillsStore = useAditionalSkillsStore()
@@ -36,9 +37,7 @@ const aditionalSkillsStore = useAditionalSkillsStore()
       <button @click="aditionalSkillsStore.addAditionalSkills" type="button" class="text-xl bg-stone-100/30 border border-stone-200 hover:border-stone-300 transition duration-300 px-8 py-4 rounded-xl shadow-lg shadow-stone-400/10 hover:shadow-stone-400/20">
         Añadir sección
       </button>
-      <RouterLink to="/wizard" class="ms-auto text-xl text-white bg-gradient-to-t from-stone-800 to-black/80 hover:bg-black transition duration-300 px-8 py-4 rounded-xl shadow-lg shadow-stone-400/10 hover:shadow-stone-400/20">
-        Finalizar
-      </RouterLink>
+      <RouterButton to-route="/wizard" class="ms-auto">Finalizar</RouterButton>
     </div>
   </div>
 </template>

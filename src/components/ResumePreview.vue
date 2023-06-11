@@ -4,6 +4,7 @@ import { useInfojobsStore } from '../stores/infojobs'
 import { useResumePreviewerStore } from '../stores/resume-previewer'
 import ChevronLeft from './icons/ChevronLeft.vue'
 import ChevronRight from './icons/ChevronRight.vue'
+import PrimaryButton from './PrimaryButton.vue'
 
 const resumePreviewer = useResumePreviewerStore()
 const infojobsStore = useInfojobsStore()
@@ -45,9 +46,7 @@ onMounted(() => {
           <button @click="infojobsStore.login('export')" type="button" class="group text-xl bg-stone-50 transition duration-300 px-8 py-4 rounded-xl shadow-lg shadow-stone-400/10 hover:shadow-stone-400/30">
             <span class="group-hover:bg-clip-text group-hover:text-transparent bg-gradient-to-r group-hover:from-[#23536E] group-hover:to-[#167DB7]">Exportar datos a InfoJobs</span>
           </button>
-          <button @click="resumePreviewer.download" type="button" class="text-xl text-white bg-gradient-to-t from-stone-800 to-black/80 hover:bg-black transition duration-300 px-8 py-4 rounded-xl shadow-lg shadow-stone-400/10 hover:shadow-stone-400/30">
-            Descargar
-          </button>
+          <PrimaryButton @click="resumePreviewer.download">Descargar</PrimaryButton>
         </div>
       </div>
     </div>

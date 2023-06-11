@@ -1,6 +1,7 @@
 <script setup>
 import { useProfessionalProfileStore } from '../../stores/professional-profile'
 import BasicTextarea from '../BasicTextarea.vue'
+import RouterButton from '../RouterButton.vue'
 
 const professionalProfileStore = useProfessionalProfileStore()
 
@@ -23,9 +24,7 @@ const descriptionExample = 'Más de cinco años de experiencia como desarrollado
       <RouterLink to="/wizard" class="ms-auto text-xl bg-stone-100/30 border border-stone-200 hover:border-stone-300 transition duration-300 px-8 py-4 rounded-xl shadow-lg shadow-stone-400/10 hover:shadow-stone-400/20">
         Volver
       </RouterLink>
-      <RouterLink :to="{ name: 'work-experience' }" class="text-xl text-white bg-gradient-to-t from-stone-800 to-black/80 hover:bg-black transition duration-300 px-8 py-4 rounded-xl shadow-lg shadow-stone-400/10 hover:shadow-stone-400/20">
-        Siguiente
-      </RouterLink>
+      <RouterButton to-route-name="work-experience">Siguiente</RouterButton>
     </div>
   </div>
 </template>
