@@ -3,6 +3,7 @@ import { useWorkExperienceStore } from '../../stores/work-experience'
 import BasicInput from '../BasicInput.vue'
 import BasicTextarea from '../BasicTextarea.vue'
 import RouterButton from '../RouterButton.vue'
+import SecondaryButton from '../SecondaryButton.vue'
 import SimpleTrash from '../icons/SimpleTrash.vue'
 
 const workExperienceStore = useWorkExperienceStore()
@@ -42,9 +43,9 @@ const workExperienceStore = useWorkExperienceStore()
       </template>
     </div>
     <div class="flex gap-4">
-      <button @click="workExperienceStore.addExperience" type="button" class="text-xl bg-stone-100/30 border border-stone-200 hover:border-stone-300 transition duration-300 px-8 py-4 rounded-xl shadow-lg shadow-stone-400/10 hover:shadow-stone-400/20">
+      <SecondaryButton @click="workExperienceStore.addExperience">
         Añadir experiencia
-      </button>
+      </SecondaryButton>
       <RouterLink to="/wizard" class="ms-auto text-xl bg-stone-100/30 border border-stone-200 hover:border-stone-300 transition duration-300 px-8 py-4 rounded-xl shadow-lg shadow-stone-400/10 hover:shadow-stone-400/20">
         Volver
       </RouterLink>
