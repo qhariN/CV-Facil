@@ -1,7 +1,7 @@
 <script setup>
 import { useInfojobsStore } from '../stores/infojobs'
 import GithubLogo from '../components/icons/GithubLogo.vue'
-import RouterButton from '../components/RouterButton.vue'
+import PrimaryRouterButton from '../components/PrimaryRouterButton.vue'
 import SecondaryButton from '../components/SecondaryButton.vue'
 
 const infojobsStore = useInfojobsStore()
@@ -15,9 +15,9 @@ const infojobsStore = useInfojobsStore()
       Obtén un PDF listo para conquistar tu próxima oportunidad laboral
     </p>
     <div class="mt-9 flex justify-center items-center gap-3">
-      <RouterButton to-route="/wizard">
+      <PrimaryRouterButton to-route="/wizard">
         Comenzar
-      </RouterButton>
+      </PrimaryRouterButton>
       <p class="text-xl">ó</p>
       <SecondaryButton @click="infojobsStore.login('import')" class="group">
         <span class="group-hover:bg-clip-text group-hover:text-transparent bg-gradient-to-r group-hover:from-[#23536E] group-hover:to-[#167DB7]">Importar de InfoJobs</span>

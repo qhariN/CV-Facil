@@ -2,8 +2,9 @@
 import { useWorkExperienceStore } from '../../stores/work-experience'
 import BasicInput from '../BasicInput.vue'
 import BasicTextarea from '../BasicTextarea.vue'
-import RouterButton from '../RouterButton.vue'
+import PrimaryRouterButton from '../PrimaryRouterButton.vue'
 import SecondaryButton from '../SecondaryButton.vue'
+import SecondaryRouterButton from '../SecondaryRouterButton.vue'
 import SimpleTrash from '../icons/SimpleTrash.vue'
 
 const workExperienceStore = useWorkExperienceStore()
@@ -49,7 +50,9 @@ const workExperienceStore = useWorkExperienceStore()
       <SecondaryRouterButton to="/wizard" class="ms-auto">
         Volver
       </SecondaryRouterButton>
-      <RouterButton to-route-name="education">Siguiente</RouterButton>
+      <PrimaryRouterButton to-route-name="education">
+        Siguiente
+      </PrimaryRouterButton>
     </div>
   </div>
 </template>

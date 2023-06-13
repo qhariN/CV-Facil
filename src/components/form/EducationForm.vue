@@ -1,8 +1,9 @@
 <script setup>
 import { useEducationStore } from '../../stores/education'
 import BasicInput from '../BasicInput.vue'
-import RouterButton from '../RouterButton.vue'
+import PrimaryRouterButton from '../PrimaryRouterButton.vue'
 import SecondaryButton from '../SecondaryButton.vue'
+import SecondaryRouterButton from '../SecondaryRouterButton.vue'
 import SimpleTrash from '../icons/SimpleTrash.vue'
 
 const educationStore = useEducationStore()
@@ -47,7 +48,9 @@ const educationStore = useEducationStore()
       <SecondaryRouterButton to="/wizard" class="ms-auto">
         Volver
       </SecondaryRouterButton>
-      <RouterButton to-route-name="technical-skills">Siguiente</RouterButton>
+      <PrimaryRouterButton to-route-name="technical-skills">
+        Siguiente
+      </PrimaryRouterButton>
     </div>
   </div>
 </template>

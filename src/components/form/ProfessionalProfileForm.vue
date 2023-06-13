@@ -1,7 +1,8 @@
 <script setup>
 import { useProfessionalProfileStore } from '../../stores/professional-profile'
 import BasicTextarea from '../BasicTextarea.vue'
-import RouterButton from '../RouterButton.vue'
+import PrimaryRouterButton from '../PrimaryRouterButton.vue'
+import SecondaryRouterButton from '../SecondaryRouterButton.vue'
 
 const professionalProfileStore = useProfessionalProfileStore()
 
@@ -24,7 +25,9 @@ const descriptionExample = 'Más de cinco años de experiencia como desarrollado
       <SecondaryRouterButton to="/wizard" class="ms-auto">
         Volver
       </SecondaryRouterButton>
-      <RouterButton to-route-name="work-experience">Siguiente</RouterButton>
+      <PrimaryRouterButton to-route-name="work-experience">
+        Siguiente
+      </PrimaryRouterButton>
     </div>
   </div>
 </template>

@@ -1,7 +1,8 @@
 <script setup>
 import { usePersonalInformationStore } from '../../stores/personal-information'
 import BasicInput from '../BasicInput.vue'
-import RouterButton from '../RouterButton.vue'
+import PrimaryRouterButton from '../PrimaryRouterButton.vue'
+import SecondaryRouterButton from '../SecondaryRouterButton.vue'
 
 const personalInformationStore = usePersonalInformationStore()
 </script>
@@ -32,7 +33,9 @@ const personalInformationStore = usePersonalInformationStore()
       <SecondaryRouterButton to="/wizard" class="ms-auto">
         Volver
       </SecondaryRouterButton>
-      <RouterButton to-route-name="web-page">Siguiente</RouterButton>
+      <PrimaryRouterButton to-route-name="web-page">
+        Siguiente
+      </PrimaryRouterButton>
     </div>
   </div>
 </template>

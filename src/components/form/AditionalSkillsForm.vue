@@ -2,7 +2,7 @@
 import { useAditionalSkillsStore } from '../../stores/aditional-skills'
 import BasicInput from '../BasicInput.vue'
 import BasicTextarea from '../BasicTextarea.vue'
-import RouterButton from '../RouterButton.vue'
+import PrimaryRouterButton from '../PrimaryRouterButton.vue'
 import SecondaryButton from '../SecondaryButton.vue'
 import SimpleTrash from '../icons/SimpleTrash.vue'
 
@@ -38,7 +38,9 @@ const aditionalSkillsStore = useAditionalSkillsStore()
       <SecondaryButton @click="aditionalSkillsStore.addAditionalSkills">
         Añadir sección
       </SecondaryButton>
-      <RouterButton to-route="/wizard" class="ms-auto">Finalizar</RouterButton>
+      <PrimaryRouterButton to-route="/wizard" class="ms-auto">
+        Finalizar
+      </PrimaryRouterButton>
     </div>
   </div>
 </template>

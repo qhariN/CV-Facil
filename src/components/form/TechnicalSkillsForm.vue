@@ -2,8 +2,9 @@
 import { useTechnicalSkillsStore } from '../../stores/technical-skills'
 import BasicInput from '../BasicInput.vue'
 import BasicTextarea from '../BasicTextarea.vue'
-import RouterButton from '../RouterButton.vue'
+import PrimaryRouterButton from '../PrimaryRouterButton.vue'
 import SecondaryButton from '../SecondaryButton.vue'
+import SecondaryRouterButton from '../SecondaryRouterButton.vue'
 import SimpleTrash from '../icons/SimpleTrash.vue'
 
 const technicalSkillsStore = useTechnicalSkillsStore()
@@ -41,7 +42,9 @@ const technicalSkillsStore = useTechnicalSkillsStore()
       <SecondaryRouterButton to="/wizard" class="ms-auto">
         Volver
       </SecondaryRouterButton>
-      <RouterButton to-route-name="aditional-skills">Siguiente</RouterButton>
+      <PrimaryRouterButton to-route-name="aditional-skills">
+        Siguiente
+      </PrimaryRouterButton>
     </div>
   </div>
 </template>
