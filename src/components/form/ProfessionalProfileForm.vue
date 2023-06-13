@@ -21,9 +21,9 @@ const descriptionExample = 'Más de cinco años de experiencia como desarrollado
     </div>
     <BasicTextarea v-model="professionalProfileStore.description" id="description" label="Descripción" :placeholder="descriptionExample" />
     <div class="flex gap-4">
-      <RouterLink to="/wizard" class="ms-auto text-xl bg-stone-100/30 border border-stone-200 hover:border-stone-300 transition duration-300 px-8 py-4 rounded-xl shadow-lg shadow-stone-400/10 hover:shadow-stone-400/20">
+      <SecondaryRouterButton to="/wizard" class="ms-auto">
         Volver
-      </RouterLink>
+      </SecondaryRouterButton>
       <RouterButton to-route-name="work-experience">Siguiente</RouterButton>
     </div>
   </div>

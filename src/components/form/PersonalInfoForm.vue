@@ -29,9 +29,9 @@ const personalInformationStore = usePersonalInformationStore()
       <BasicInput v-model="personalInformationStore.email" id="email" label="Correo electrónico" placeholder="john.doe@ejemplo.com" />
     </div>
     <div class="flex gap-4">
-      <RouterLink to="/wizard" class="ms-auto text-xl bg-stone-100/30 border border-stone-200 hover:border-stone-300 transition duration-300 px-8 py-4 rounded-xl shadow-lg shadow-stone-400/10 hover:shadow-stone-400/20">
+      <SecondaryRouterButton to="/wizard" class="ms-auto">
         Volver
-      </RouterLink>
+      </SecondaryRouterButton>
       <RouterButton to-route-name="web-page">Siguiente</RouterButton>
     </div>
   </div>

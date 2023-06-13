@@ -1,7 +1,8 @@
 <script setup>
-import { RouterLink } from 'vue-router'
 import { useInfojobsStore } from '../stores/infojobs'
 import GithubLogo from '../components/icons/GithubLogo.vue'
+import RouterButton from '../components/RouterButton.vue'
+import SecondaryButton from '../components/SecondaryButton.vue'
 
 const infojobsStore = useInfojobsStore()
 </script>
@@ -14,13 +15,13 @@ const infojobsStore = useInfojobsStore()
       Obtén un PDF listo para conquistar tu próxima oportunidad laboral
     </p>
     <div class="mt-9 flex justify-center items-center gap-3">
-      <RouterLink to="/wizard" class="text-xl text-white bg-gradient-to-t from-stone-800 to-black/80 hover:bg-black transition duration-300 px-8 py-4 rounded-xl shadow-lg shadow-stone-400/10 hover:shadow-stone-400/20">
+      <RouterButton to-route="/wizard">
         Comenzar
-      </RouterLink>
+      </RouterButton>
       <p class="text-xl">ó</p>
-      <button @click="infojobsStore.login('import')" class="group text-xl bg-stone-100/30 border border-transparent hover:border-[#1D668F] transition duration-300 px-8 py-4 rounded-xl shadow-lg shadow-stone-400/10 hover:shadow-stone-400/20" type="button">
+      <SecondaryButton @click="infojobsStore.login('import')" class="group">
         <span class="group-hover:bg-clip-text group-hover:text-transparent bg-gradient-to-r group-hover:from-[#23536E] group-hover:to-[#167DB7]">Importar de InfoJobs</span>
-      </button>
+      </SecondaryButton>
     </div>
   </div>
   <div class="absolute bottom-0 right-0 px-12 py-8">
