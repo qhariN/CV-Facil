@@ -6,6 +6,7 @@ import ChevronLeft from './icons/ChevronLeft.vue'
 import ChevronRight from './icons/ChevronRight.vue'
 import PrimaryButton from './PrimaryButton.vue'
 import SecondaryButton from './SecondaryButton.vue'
+import SecondaryIconButton from './SecondaryIconButton.vue'
 
 const resumePreviewer = useResumePreviewerStore()
 const infojobsStore = useInfojobsStore()
@@ -21,13 +22,13 @@ onMounted(() => {
 
       <div class="flex flex-col gap-5 w-full max-w-xl">
         <div class="flex justify-center items-center gap-5 text-stone-600">
-          <button @click="resumePreviewer.previousPage" :disabled="resumePreviewer.currentPage <= 1" type="button" class="p-2 bg-white/60 transition duration-300 text-stone-500 disabled:text-stone-300 disabled:cursor-not-allowed rounded-full shadow-lg shadow-stone-400/10 hover:shadow-stone-400/30">
+          <SecondaryIconButton @click="resumePreviewer.previousPage" :disabled="resumePreviewer.currentPage <= 1">
             <ChevronLeft class="w-6 h-6" />
-          </button>
+          </SecondaryIconButton>
           Página {{ resumePreviewer.currentPage }} de {{ resumePreviewer.totalPages }}
-          <button @click="resumePreviewer.nextPage" :disabled="resumePreviewer.currentPage >= resumePreviewer.totalPages" type="button" class="p-2 bg-white/60 transition duration-300 text-stone-500 disabled:text-stone-300 disabled:cursor-not-allowed rounded-full shadow-lg shadow-stone-400/10 hover:shadow-stone-400/30">
+          <SecondaryIconButton @click="resumePreviewer.nextPage" :disabled="resumePreviewer.currentPage >= resumePreviewer.totalPages">
             <ChevronRight class="w-6 h-6" />
-          </button>
+          </SecondaryIconButton>
         </div>
         <div class="grow flex items-center justify-center relative min-w-[500px] min-h-[707px]">
           <div class="bg w-full h-full absolute"></div>

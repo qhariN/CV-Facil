@@ -4,6 +4,7 @@ import BasicInput from '../BasicInput.vue'
 import BasicTextarea from '../BasicTextarea.vue'
 import PrimaryRouterButton from '../PrimaryRouterButton.vue'
 import SecondaryButton from '../SecondaryButton.vue'
+import SecondaryIconButton from '../SecondaryIconButton.vue'
 import SecondaryRouterButton from '../SecondaryRouterButton.vue'
 import SimpleTrash from '../icons/SimpleTrash.vue'
 
@@ -27,9 +28,9 @@ const technicalSkillsStore = useTechnicalSkillsStore()
           <span class="text-stone-700">
             {{ skill.topic? skill.topic : 'Habilidades técnicas' }}
           </span>
-          <button v-if="technicalSkillsStore.skills.length > 1" @click="technicalSkillsStore.removeTechnicalSkills(index)" type="button" class="ms-auto w-12 h-12 bg-stone-100/30 border border-stone-200 hover:border-stone-300 transition duration-300 rounded-full shadow-lg shadow-stone-400/10 hover:shadow-stone-400/20 flex justify-center items-center">
+          <SecondaryIconButton v-if="technicalSkillsStore.skills.length > 1" @click="technicalSkillsStore.removeTechnicalSkills(index)" class="ms-auto">
             <SimpleTrash class="w-5 h-5" />
-          </button>
+          </SecondaryIconButton>
         </div>
         <BasicInput v-model="skill.topic" id="topic-{{ index }}" label="Nombre de la sección" placeholder="Tecnologías CI/CD" />
         <BasicTextarea v-model="skill.list" id="list-{{ index }}" :rows="3" label="Lista de habilidades" placeholder="Docker, Kubernetes, Jenkins, Gitlab CI, Github Actions, etc." />

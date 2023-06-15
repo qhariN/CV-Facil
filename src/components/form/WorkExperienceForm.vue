@@ -4,6 +4,7 @@ import BasicInput from '../BasicInput.vue'
 import BasicTextarea from '../BasicTextarea.vue'
 import PrimaryRouterButton from '../PrimaryRouterButton.vue'
 import SecondaryButton from '../SecondaryButton.vue'
+import SecondaryIconButton from '../SecondaryIconButton.vue'
 import SecondaryRouterButton from '../SecondaryRouterButton.vue'
 import SimpleTrash from '../icons/SimpleTrash.vue'
 
@@ -27,9 +28,9 @@ const workExperienceStore = useWorkExperienceStore()
           <span class="text-stone-700">
             {{ experience.company? experience.company : 'Experiencia laboral' }}
           </span>
-          <button v-if="workExperienceStore.experiences.length > 1" @click="workExperienceStore.removeExperience(index)" type="button" class="ms-auto w-12 h-12 bg-stone-100/30 border border-stone-200 hover:border-stone-300 transition duration-300 rounded-full shadow-lg shadow-stone-400/10 hover:shadow-stone-400/20 flex justify-center items-center">
+          <SecondaryIconButton v-if="workExperienceStore.experiences.length > 1" @click="workExperienceStore.removeExperience(index)" class="ms-auto">
             <SimpleTrash class="w-5 h-5" />
-          </button>
+          </SecondaryIconButton>
         </div>
         <div class="flex gap-6">
           <BasicInput v-model="experience.job" id="job-{{ index }}" label="Puesto" placeholder="Desarrollador web" class="grow" />
