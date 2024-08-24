@@ -45,6 +45,8 @@ export const useWorkExperienceStore = defineStore('workExperience', () => {
 
   const completed = computed(() => experiences.value.length > 0 && experiences.value.every(experience => experience.job && experience.company && experience.location && experience.startingDate && experience.finishingDate && experience.description))
 
+  const isEmpty = computed(() => experiences.value.length <= 1 && !experiences.value[0].job && !experiences.value[0].company && !experiences.value[0].location && !experiences.value[0].startingDate && !experiences.value[0].finishingDate && !experiences.value[0].description)
+
   watch(experiences, (value) => localStorage.setItem('experiences', JSON.stringify(value)), { deep: true })
 
   function init () {
@@ -89,5 +91,5 @@ export const useWorkExperienceStore = defineStore('workExperience', () => {
     return string[0].toUpperCase() + string.slice(1)
   }
 
-  return { experiences, completed, set, addExperience, removeExperience, workExperienceSection }
+  return { experiences, completed, isEmpty, set, addExperience, removeExperience, workExperienceSection }
 })

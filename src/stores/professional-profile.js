@@ -23,6 +23,8 @@ export const useProfessionalProfileStore = defineStore('professionalProfile', ()
 
   const completed = computed(() => description.value !== '')
 
+  const isEmpty = computed(() => description.value === '')
+
   watch(description, () => localStorage.setItem('description', description.value))
 
   function init () {
@@ -33,5 +35,5 @@ export const useProfessionalProfileStore = defineStore('professionalProfile', ()
     description.value = data.cvtext.replace(' ', ' ').trim()
   }
 
-  return { description, completed, set, professionalProfileSection }
+  return { description, completed, isEmpty, set, professionalProfileSection }
 })

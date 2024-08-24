@@ -41,6 +41,8 @@ export const useEducationStore = defineStore('education', () => {
 
   const completed = computed(() => educations.value.length > 0 && educations.value.every(education => education.title && education.institution && education.location && education.startingDate && education.finishingDate))
 
+  const isEmpty = computed(() => educations.value.length <= 1 && !educations.value[0].title && !educations.value[0].institution && !educations.value[0].location && !educations.value[0].startingDate && !educations.value[0].finishingDate)
+
   watch(educations, (value) => localStorage.setItem('educations', JSON.stringify(value)), { deep: true })
 
   function init () {
@@ -79,5 +81,5 @@ export const useEducationStore = defineStore('education', () => {
     return monthYear
   }
 
-  return { educations, completed, set, addEducation, removeEducation, educationSection }
+  return { educations, completed, isEmpty, set, addEducation, removeEducation, educationSection }
 })

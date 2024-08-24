@@ -45,10 +45,10 @@ export const useResumePreviewerStore = defineStore('resumePreviewer', () => {
 
     const documentContent = [
       personalInformationStore.personalInformationSection,
-      professionalProfileStore.professionalProfileSection,
-      workExperienceStore.workExperienceSection,
-      educationStore.educationSection,
-      technicalSkillsStore.technicalSkillsSection,
+      ...!professionalProfileStore.isEmpty ? [professionalProfileStore.professionalProfileSection] : [],
+      ...!workExperienceStore.isEmpty ? [workExperienceStore.workExperienceSection] : [],
+      ...!educationStore.isEmpty ? [educationStore.educationSection] : [],
+      ...!technicalSkillsStore.isEmpty ? [technicalSkillsStore.technicalSkillsSection] : [],
       ...!aditionalSkillsStore.isEmpty ? [aditionalSkillsStore.aditionalSkillsSection] : []
     ]
 
